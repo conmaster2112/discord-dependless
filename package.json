@@ -1,0 +1,49 @@
+{
+  "name": "discord-dependless",
+  "version": "10.0.0-alpha.2",
+  "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "description": "A lightweight Discord API wrapper designed for simplicity and zero active dependencies. Unlike traditional libraries, **discord-dependless** allows sending messages persistent connection and gateway events are optional.",
+  "scripts": {
+    "build": "rolldown -c && node ./dist/build.js && tsdown -c ./tsdown.config.ts",
+    "test": "pnpm run build && node ./dist/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/conmaster2112/discord-dependless.git"
+  },
+  "author": "conmaster2112",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/conmaster2112/discord-dependless/issues"
+  },
+  "homepage": "https://github.com/conmaster2112/discord-dependless#readme",
+  "files": [
+    "./dist/index.js",
+    "./dist/index.d.ts",
+    "./package.json",
+    "./readme.md"
+  ],
+  "keywords": [
+    "discord",
+    "es",
+    "discordjs",
+    "lightweight",
+    "lite",
+    "dependless",
+    "es",
+    "esmodule"
+  ],
+  "packageManager": "pnpm@10.8.0",
+  "devDependencies": {
+    "@types/node": "22.15.3",
+    "oxlint": "^0.16.5",
+    "rolldown": "1.0.0-beta.8-commit.bc78fa1",
+    "tsdown": "0.8.0-beta.4",
+    "typescript": "^5.8.3",
+    "unplugin-isolated-decl": "^0.13.6",
+    "discord-dependless": "link:"
+  },
+  "dependencies": {}
+}
