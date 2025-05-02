@@ -1,6 +1,6 @@
 {
   "name": "discord-dependless",
-  "version": "10.0.0-alpha.2",
+  "version": "10.0.0-alpha.3",
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -22,8 +22,8 @@
   "files": [
     "./dist/index.js",
     "./dist/index.d.ts",
-    "./package.json",
-    "./readme.md"
+    "package.json",
+    "README.md"
   ],
   "keywords": [
     "discord",

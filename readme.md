@@ -2,6 +2,9 @@
 
 A lightweight Discord API wrapper designed for simplicity and zero active dependencies. Unlike traditional libraries, **discord-dependless** allows sending messages persistent connection and gateway events are optional.
 
+# Github
+https://github.com/conmaster2112/discord-dependless
+
 ## Features
 
 - **Zero Dependencies** – Fully functional without external dependencies.

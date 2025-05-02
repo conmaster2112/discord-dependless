@@ -1,38 +1,28 @@
-import {Bot, Result} from "discord-dependless";
+import {Bot} from "discord-dependless";
+import {token, channel} from "./.init.json" with {type: "json"};
 
-const bot = new Bot({token: process.env["discord_token"]!});
-//const gateway = await bot.connect(513);
-/*
-gateway.addEventListener("READY", ()=>{
-    console.log("Ready");
-    console.log("Connected. . .");
-});*/
 
-console.log(bot.token);
-let result = await bot.sendMessage("1139562043867934750", {
-    embeds:[
-        {
-            title: "Yes",
-            description: "So nice",
-            color: 0x000000
-        }
-    ]
+// Init
+const bot = new Bot({token: token});
+
+// Send first message
+let result = await bot.sendMessage(`${channel}`, {
+    content: "I want a embed please"
 });
 
-const {id} = result.unwrap();
-result = await bot.sendMessage("1139562043867934750", {
+// Reply
+const {id: message_id} = result.unwrap();
+result = await bot.sendMessage(`${channel}`, {
     embeds:[
         {
-            title: "Yes",
-            description: "So nice",
-            color: 0x000000
+            title: "OK",
+            description: "Here is awesome embed",
+            color: 0x00bb44
         }
     ],
-    message_reference: {
-        message_id: id
-    }
+    message_reference: { message_id}
 });
-
 result.unwrap();
 
-console.log("Test")
+
+console.log("So far so good");
