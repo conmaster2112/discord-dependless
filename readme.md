@@ -1,8 +1,10 @@
+# ⚠️ Alpha Version Prerelease ⚠️
+
 # Discord-Dependless
 
 A lightweight Discord API wrapper designed for simplicity and zero active dependencies. Unlike traditional libraries, **discord-dependless** allows sending messages persistent connection and gateway events are optional.
 
-# Github
+### Github
 https://github.com/conmaster2112/discord-dependless
 
 ## Features
@@ -37,7 +39,7 @@ import { Bot, Result } from "discord-dependless";
 
 const bot = new Bot({ token: "<your-token-here>" });
 
-await Result.unwrap(bot.sendMessage("channelId", {
+const result = await bot.sendMessage("channelId", {
     embeds: [
         {
             title: "Embed Title",
@@ -45,7 +47,11 @@ await Result.unwrap(bot.sendMessage("channelId", {
             color: 0x000000
         }
     ]
-}));
+});
+
+
+//Throw if something went wrong
+result.unwrap();
 ```
 
 Expects all snowflake types as number strings, following Discord's Rest API
