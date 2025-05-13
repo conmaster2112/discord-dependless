@@ -1,5 +1,5 @@
 import { RolldownOptions} from "rolldown";
-import { devDependencies } from "./package.json"
+import { devDependencies, main } from "./package.json"
 
 const external = new RegExp(`^(${Object.getOwnPropertyNames(devDependencies).join("|")}|node:)`)
 
@@ -11,6 +11,18 @@ export default [
         output: {
             file: "dist/build.js"
         }
+    },
+    {
+        external,
+        input: "src/index.ts",
+        platform: "node",
+        output: {
+            file: main,
+            esModule: true,
+            minify: true,
+        },
+        treeshake: true,
+        keepNames: true
     },
     {
         external,

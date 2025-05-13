@@ -1,131 +1,134 @@
-export type DiscordRestAPIPath = `/partner-sdk/provisional-accounts/unmerge` |
-`/oauth2/applications/@me` |
-`/users/@me/connections` |
-`/users/@me/channels` |
-`/users/@me/guilds` |
-`/applications/@me` |
-`/partner-sdk/token` |
-`/gateway/bot` |
-`/oauth2/userinfo` |
-`/oauth2/keys` |
-`/oauth2/@me` |
-`/voice/regions` |
-`/users/@me` |
-`/soundboard-default-sounds` |
-`/stage-instances` |
-`/sticker-packs` |
-`/gateway` |
-`/lobbies` |
-`/guilds` |
-`/channels/${DiscordSnowflakeType}/users/@me/threads/archived/private` |
-`/applications/${DiscordSnowflakeType}/guilds/${DiscordSnowflakeType}/commands/permissions` |
-`/applications/${DiscordSnowflakeType}/guilds/${DiscordSnowflakeType}/commands/${DiscordSnowflakeType}/permissions` |
-`/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}/reactions/${string}/@me` |
-`/channels/${DiscordSnowflakeType}/threads/archived/private` |
-`/channels/${DiscordSnowflakeType}/threads/archived/public` |
-`/users/@me/applications/${DiscordSnowflakeType}/role-connection` |
-`/users/@me/guilds/${DiscordSnowflakeType}/member` |
-`/applications/${DiscordSnowflakeType}/role-connections/metadata` |
+
+import { RequestJson } from "./request";
+import { RequestMethod } from "./enums";
+export type DiscordRestAPIPath = `/applications/@me` |
+`/applications/${DiscordSnowflakeType}` |
+`/applications/${DiscordSnowflakeType}/activity-instances/${string}` |
+`/applications/${DiscordSnowflakeType}/attachment` |
+`/applications/${DiscordSnowflakeType}/commands` |
+`/applications/${DiscordSnowflakeType}/commands/${DiscordSnowflakeType}` |
+`/applications/${DiscordSnowflakeType}/emojis` |
+`/applications/${DiscordSnowflakeType}/emojis/${DiscordSnowflakeType}` |
+`/applications/${DiscordSnowflakeType}/entitlements` |
+`/applications/${DiscordSnowflakeType}/entitlements/${DiscordSnowflakeType}` |
 `/applications/${DiscordSnowflakeType}/entitlements/${DiscordSnowflakeType}/consume` |
-`/applications/${DiscordSnowflakeType}/guilds/${DiscordSnowflakeType}/commands/${DiscordSnowflakeType}` |
 `/applications/${DiscordSnowflakeType}/guilds/${DiscordSnowflakeType}/commands` |
-`/channels/${DiscordSnowflakeType}/thread-members/@me` |
+`/applications/${DiscordSnowflakeType}/guilds/${DiscordSnowflakeType}/commands/permissions` |
+`/applications/${DiscordSnowflakeType}/guilds/${DiscordSnowflakeType}/commands/${DiscordSnowflakeType}` |
+`/applications/${DiscordSnowflakeType}/guilds/${DiscordSnowflakeType}/commands/${DiscordSnowflakeType}/permissions` |
+`/applications/${DiscordSnowflakeType}/role-connections/metadata` |
+`/channels/${DiscordSnowflakeType}` |
+`/channels/${DiscordSnowflakeType}/followers` |
+`/channels/${DiscordSnowflakeType}/invites` |
+`/channels/${DiscordSnowflakeType}/messages` |
 `/channels/${DiscordSnowflakeType}/messages/bulk-delete` |
-`/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}/reactions/${string}/${DiscordSnowflakeType}` |
-`/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}/reactions/${string}` |
-`/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}/reactions` |
+`/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}` |
 `/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}/crosspost` |
+`/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}/reactions` |
+`/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}/reactions/${string}` |
+`/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}/reactions/${string}/@me` |
+`/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}/reactions/${string}/${DiscordSnowflakeType}` |
 `/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}/threads` |
-`/channels/${DiscordSnowflakeType}/threads/search` |
+`/channels/${DiscordSnowflakeType}/permissions/${DiscordSnowflakeType}` |
+`/channels/${DiscordSnowflakeType}/pins` |
+`/channels/${DiscordSnowflakeType}/pins/${DiscordSnowflakeType}` |
 `/channels/${DiscordSnowflakeType}/polls/${DiscordSnowflakeType}/answers/${number}` |
 `/channels/${DiscordSnowflakeType}/polls/${DiscordSnowflakeType}/expire` |
-`/webhooks/${DiscordSnowflakeType}/${string}/messages/@original` |
-`/lobbies/${DiscordSnowflakeType}/members/@me` |
-`/guilds/${DiscordSnowflakeType}/scheduled-events/${DiscordSnowflakeType}/users` |
-`/guilds/${DiscordSnowflakeType}/auto-moderation/rules/${DiscordSnowflakeType}` |
-`/guilds/${DiscordSnowflakeType}/auto-moderation/rules` |
-`/guilds/${DiscordSnowflakeType}/voice-states/@me` |
-`/guilds/${DiscordSnowflakeType}/members/search` |
-`/guilds/${DiscordSnowflakeType}/threads/active` |
-`/guilds/${DiscordSnowflakeType}/members/@me` |
-`/guilds/${DiscordSnowflakeType}/members/${DiscordSnowflakeType}/roles/${DiscordSnowflakeType}` |
-`/users/@me/guilds/${DiscordSnowflakeType}` |
-`/applications/${DiscordSnowflakeType}/activity-instances/${string}` |
-`/applications/${DiscordSnowflakeType}/entitlements/${DiscordSnowflakeType}` |
-`/applications/${DiscordSnowflakeType}/entitlements` |
-`/applications/${DiscordSnowflakeType}/attachment` |
-`/applications/${DiscordSnowflakeType}/commands/${DiscordSnowflakeType}` |
-`/applications/${DiscordSnowflakeType}/commands` |
-`/applications/${DiscordSnowflakeType}/emojis/${DiscordSnowflakeType}` |
-`/applications/${DiscordSnowflakeType}/emojis` |
-`/interactions/${DiscordSnowflakeType}/${string}/callback` |
-`/channels/${DiscordSnowflakeType}/send-soundboard-sound` |
-`/channels/${DiscordSnowflakeType}/thread-members/${DiscordSnowflakeType}` |
-`/channels/${DiscordSnowflakeType}/thread-members` |
-`/channels/${DiscordSnowflakeType}/permissions/${DiscordSnowflakeType}` |
 `/channels/${DiscordSnowflakeType}/recipients/${DiscordSnowflakeType}` |
-`/channels/${DiscordSnowflakeType}/followers` |
-`/channels/${DiscordSnowflakeType}/messages/${DiscordSnowflakeType}` |
-`/channels/${DiscordSnowflakeType}/messages` |
-`/channels/${DiscordSnowflakeType}/webhooks` |
-`/channels/${DiscordSnowflakeType}/invites` |
+`/channels/${DiscordSnowflakeType}/send-soundboard-sound` |
+`/channels/${DiscordSnowflakeType}/thread-members` |
+`/channels/${DiscordSnowflakeType}/thread-members/@me` |
+`/channels/${DiscordSnowflakeType}/thread-members/${DiscordSnowflakeType}` |
 `/channels/${DiscordSnowflakeType}/threads` |
+`/channels/${DiscordSnowflakeType}/threads/archived/private` |
+`/channels/${DiscordSnowflakeType}/threads/archived/public` |
+`/channels/${DiscordSnowflakeType}/threads/search` |
 `/channels/${DiscordSnowflakeType}/typing` |
-`/channels/${DiscordSnowflakeType}/pins/${DiscordSnowflakeType}` |
-`/channels/${DiscordSnowflakeType}/pins` |
-`/webhooks/${DiscordSnowflakeType}/${string}/messages/${DiscordSnowflakeType}` |
-`/webhooks/${DiscordSnowflakeType}/${string}/github` |
-`/webhooks/${DiscordSnowflakeType}/${string}/slack` |
-`/lobbies/${DiscordSnowflakeType}/channel-linking` |
-`/lobbies/${DiscordSnowflakeType}/messages` |
-`/lobbies/${DiscordSnowflakeType}/members/${DiscordSnowflakeType}` |
+`/channels/${DiscordSnowflakeType}/users/@me/threads/archived/private` |
+`/channels/${DiscordSnowflakeType}/webhooks` |
+`/gateway` |
+`/gateway/bot` |
+`/guilds` |
 `/guilds/templates/${string}` |
-`/guilds/${DiscordSnowflakeType}/new-member-welcome` |
-`/guilds/${DiscordSnowflakeType}/soundboard-sounds/${DiscordSnowflakeType}` |
-`/guilds/${DiscordSnowflakeType}/soundboard-sounds` |
-`/guilds/${DiscordSnowflakeType}/scheduled-events/${DiscordSnowflakeType}` |
-`/guilds/${DiscordSnowflakeType}/scheduled-events` |
-`/guilds/${DiscordSnowflakeType}/welcome-screen` |
-`/guilds/${DiscordSnowflakeType}/voice-states/${DiscordSnowflakeType}` |
-`/guilds/${DiscordSnowflakeType}/integrations/${DiscordSnowflakeType}` |
-`/guilds/${DiscordSnowflakeType}/integrations` |
-`/guilds/${DiscordSnowflakeType}/widget.json` |
-`/guilds/${DiscordSnowflakeType}/onboarding` |
-`/guilds/${DiscordSnowflakeType}/vanity-url` |
-`/guilds/${DiscordSnowflakeType}/audit-logs` |
-`/guilds/${DiscordSnowflakeType}/widget.png` |
-`/guilds/${DiscordSnowflakeType}/templates/${string}` |
-`/guilds/${DiscordSnowflakeType}/templates` |
-`/guilds/${DiscordSnowflakeType}/stickers/${DiscordSnowflakeType}` |
-`/guilds/${DiscordSnowflakeType}/bulk-ban` |
-`/guilds/${DiscordSnowflakeType}/stickers` |
-`/guilds/${DiscordSnowflakeType}/webhooks` |
-`/guilds/${DiscordSnowflakeType}/channels` |
-`/guilds/${DiscordSnowflakeType}/members/${DiscordSnowflakeType}` |
-`/guilds/${DiscordSnowflakeType}/members` |
-`/guilds/${DiscordSnowflakeType}/preview` |
-`/guilds/${DiscordSnowflakeType}/invites` |
-`/guilds/${DiscordSnowflakeType}/regions` |
-`/guilds/${DiscordSnowflakeType}/emojis/${DiscordSnowflakeType}` |
-`/guilds/${DiscordSnowflakeType}/emojis` |
-`/guilds/${DiscordSnowflakeType}/widget` |
-`/guilds/${DiscordSnowflakeType}/roles/${DiscordSnowflakeType}` |
-`/guilds/${DiscordSnowflakeType}/roles` |
-`/guilds/${DiscordSnowflakeType}/prune` |
-`/guilds/${DiscordSnowflakeType}/bans/${DiscordSnowflakeType}` |
-`/guilds/${DiscordSnowflakeType}/bans` |
-`/guilds/${DiscordSnowflakeType}/mfa` |
-`/stage-instances/${DiscordSnowflakeType}` |
-`/sticker-packs/${DiscordSnowflakeType}` |
-`/applications/${DiscordSnowflakeType}` |
-`/webhooks/${DiscordSnowflakeType}/${string}` |
-`/stickers/${DiscordSnowflakeType}` |
-`/webhooks/${DiscordSnowflakeType}` |
-`/channels/${DiscordSnowflakeType}` |
-`/invites/${string}` |
-`/lobbies/${DiscordSnowflakeType}` |
 `/guilds/${DiscordSnowflakeType}` |
-`/users/${DiscordSnowflakeType}`;
+`/guilds/${DiscordSnowflakeType}/audit-logs` |
+`/guilds/${DiscordSnowflakeType}/auto-moderation/rules` |
+`/guilds/${DiscordSnowflakeType}/auto-moderation/rules/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/bans` |
+`/guilds/${DiscordSnowflakeType}/bans/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/bulk-ban` |
+`/guilds/${DiscordSnowflakeType}/channels` |
+`/guilds/${DiscordSnowflakeType}/emojis` |
+`/guilds/${DiscordSnowflakeType}/emojis/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/integrations` |
+`/guilds/${DiscordSnowflakeType}/integrations/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/invites` |
+`/guilds/${DiscordSnowflakeType}/members` |
+`/guilds/${DiscordSnowflakeType}/members/@me` |
+`/guilds/${DiscordSnowflakeType}/members/search` |
+`/guilds/${DiscordSnowflakeType}/members/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/members/${DiscordSnowflakeType}/roles/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/mfa` |
+`/guilds/${DiscordSnowflakeType}/new-member-welcome` |
+`/guilds/${DiscordSnowflakeType}/onboarding` |
+`/guilds/${DiscordSnowflakeType}/preview` |
+`/guilds/${DiscordSnowflakeType}/prune` |
+`/guilds/${DiscordSnowflakeType}/regions` |
+`/guilds/${DiscordSnowflakeType}/roles` |
+`/guilds/${DiscordSnowflakeType}/roles/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/scheduled-events` |
+`/guilds/${DiscordSnowflakeType}/scheduled-events/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/scheduled-events/${DiscordSnowflakeType}/users` |
+`/guilds/${DiscordSnowflakeType}/soundboard-sounds` |
+`/guilds/${DiscordSnowflakeType}/soundboard-sounds/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/stickers` |
+`/guilds/${DiscordSnowflakeType}/stickers/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/templates` |
+`/guilds/${DiscordSnowflakeType}/templates/${string}` |
+`/guilds/${DiscordSnowflakeType}/threads/active` |
+`/guilds/${DiscordSnowflakeType}/vanity-url` |
+`/guilds/${DiscordSnowflakeType}/voice-states/@me` |
+`/guilds/${DiscordSnowflakeType}/voice-states/${DiscordSnowflakeType}` |
+`/guilds/${DiscordSnowflakeType}/webhooks` |
+`/guilds/${DiscordSnowflakeType}/welcome-screen` |
+`/guilds/${DiscordSnowflakeType}/widget` |
+`/guilds/${DiscordSnowflakeType}/widget.json` |
+`/guilds/${DiscordSnowflakeType}/widget.png` |
+`/interactions/${DiscordSnowflakeType}/${string}/callback` |
+`/invites/${string}` |
+`/lobbies` |
+`/lobbies/${DiscordSnowflakeType}` |
+`/lobbies/${DiscordSnowflakeType}/channel-linking` |
+`/lobbies/${DiscordSnowflakeType}/members/@me` |
+`/lobbies/${DiscordSnowflakeType}/members/${DiscordSnowflakeType}` |
+`/lobbies/${DiscordSnowflakeType}/messages` |
+`/oauth2/@me` |
+`/oauth2/applications/@me` |
+`/oauth2/keys` |
+`/oauth2/userinfo` |
+`/partner-sdk/provisional-accounts/unmerge` |
+`/partner-sdk/token` |
+`/soundboard-default-sounds` |
+`/stage-instances` |
+`/stage-instances/${DiscordSnowflakeType}` |
+`/sticker-packs` |
+`/sticker-packs/${DiscordSnowflakeType}` |
+`/stickers/${DiscordSnowflakeType}` |
+`/users/@me` |
+`/users/@me/applications/${DiscordSnowflakeType}/role-connection` |
+`/users/@me/channels` |
+`/users/@me/connections` |
+`/users/@me/guilds` |
+`/users/@me/guilds/${DiscordSnowflakeType}` |
+`/users/@me/guilds/${DiscordSnowflakeType}/member` |
+`/users/${DiscordSnowflakeType}` |
+`/voice/regions` |
+`/webhooks/${DiscordSnowflakeType}` |
+`/webhooks/${DiscordSnowflakeType}/${string}` |
+`/webhooks/${DiscordSnowflakeType}/${string}/github` |
+`/webhooks/${DiscordSnowflakeType}/${string}/messages/@original` |
+`/webhooks/${DiscordSnowflakeType}/${string}/messages/${DiscordSnowflakeType}` |
+`/webhooks/${DiscordSnowflakeType}/${string}/slack`;
 
 export type DiscordAccountResponse = {id: string, name?: string | null};  //object
 export type DiscordActionRowComponentForMessageRequest = {type: (DiscordMessageComponentTypes), components: (DiscordButtonComponentForMessageRequest | DiscordChannelSelectComponentForMessageRequest | DiscordMentionableSelectComponentForMessageRequest | DiscordRoleSelectComponentForMessageRequest | DiscordStringSelectComponentForMessageRequest | DiscordUserSelectComponentForMessageRequest)[]};  //object
@@ -305,7 +308,7 @@ export type DiscordGuildExplicitContentFilterTypes = (0 | 1 | 2);  //integer
 export type DiscordGuildFeatures = ("ANIMATED_BANNER" | "ANIMATED_ICON" | "APPLICATION_COMMAND_PERMISSIONS_V2" | "AUTO_MODERATION" | "BANNER" | "COMMUNITY" | "CREATOR_MONETIZABLE_PROVISIONAL" | "CREATOR_STORE_PAGE" | "DEVELOPER_SUPPORT_SERVER" | "DISCOVERABLE" | "FEATURABLE" | "INVITES_DISABLED" | "INVITE_SPLASH" | "MEMBER_VERIFICATION_GATE_ENABLED" | "MORE_STICKERS" | "NEWS" | "PARTNERED" | "PREVIEW_ENABLED" | "RAID_ALERTS_DISABLED" | "ROLE_ICONS" | "ROLE_SUBSCRIPTIONS_AVAILABLE_FOR_PURCHASE" | "ROLE_SUBSCRIPTIONS_ENABLED" | "TICKETED_EVENTS_ENABLED" | "VANITY_URL" | "VERIFIED" | "VIP_REGIONS" | "WELCOME_SCREEN_ENABLED");  //string
 export type DiscordGuildHomeSettingsResponse = {guild_id: DiscordSnowflakeType, enabled: boolean, welcome_message?: (null | DiscordWelcomeMessageResponse), new_member_actions?: (null | DiscordNewMemberActionResponse)[] | null, resource_channels?: (null | DiscordResourceChannelResponse)[] | null};  //object
 export type DiscordGuildIncomingWebhookResponse = {application_id?: (null | DiscordSnowflakeType), avatar?: string | null, channel_id?: (null | DiscordSnowflakeType), guild_id?: (null | DiscordSnowflakeType), id: DiscordSnowflakeType, name: string, type: (DiscordWebhookTypes), user?: (null | DiscordUserResponse), token?: string | null, url?: string | null};  //object
-export type DiscordGuildInviteResponse = {type?: (null | (DiscordInviteTypes)), code: string, inviter?: (null | DiscordUserResponse), max_age?: number | null, created_at?: string | null, expires_at?: string | null, is_contact?: boolean | null, flags?: number | null, guild?: (null | DiscordInviteGuildResponse), guild_id?: (null | DiscordSnowflakeType), channel?: (null | DiscordInviteChannelResponse), stage_instance?: (null | DiscordInviteStageInstanceResponse), target_type?: (null | DiscordInviteTargetTypes), target_user?: (null | DiscordUserResponse), target_application?: (null | DiscordInviteApplicationResponse), guild_scheduled_event?: (null | DiscordScheduledEventResponse), uses?: number | null, max_uses?: number | null, temporary?: boolean | null, approximate_member_count?: number | null, approximate_presence_count?: number | null, is_nickname_changeable?: boolean | null};  //object
+export type DiscordGuildInviteResponse = {type?: (null | (DiscordInviteTypes)), code: string, inviter?: (null | DiscordUserResponse), max_age?: number | null, created_at?: string | null, expires_at?: string | null, is_contact?: boolean | null, flags?: number | null, guild?: (null | DiscordInviteGuildResponse), guild_id?: (null | DiscordSnowflakeType), channel?: (null | DiscordInviteChannelResponse), target_type?: (null | DiscordInviteTargetTypes), target_user?: (null | DiscordUserResponse), target_application?: (null | DiscordInviteApplicationResponse), guild_scheduled_event?: (null | DiscordScheduledEventResponse), uses?: number | null, max_uses?: number | null, temporary?: boolean | null, approximate_member_count?: number | null, approximate_presence_count?: number | null, is_nickname_changeable?: boolean | null};  //object
 export type DiscordGuildMFALevel = (0 | 1);  //integer
 export type DiscordGuildMFALevelResponse = {level: DiscordGuildMFALevel};  //object
 export type DiscordGuildMemberResponse = {avatar?: string | null, avatar_decoration_data?: (null | DiscordUserAvatarDecorationResponse), banner?: string | null, communication_disabled_until?: string | null, flags: number, joined_at: string, nick?: string | null, pending: boolean, premium_since?: string | null, roles: DiscordSnowflakeType[], user: DiscordUserResponse, mute: boolean, deaf: boolean};  //object
@@ -355,7 +358,6 @@ export type DiscordInviteApplicationResponse = {id: DiscordSnowflakeType, name: 
 export type DiscordInviteChannelRecipientResponse = {username: string};  //object
 export type DiscordInviteChannelResponse = {id: DiscordSnowflakeType, type: DiscordChannelTypes, name?: string | null, icon?: string | null, recipients?: DiscordInviteChannelRecipientResponse[] | null};  //object
 export type DiscordInviteGuildResponse = {id: DiscordSnowflakeType, name: string, splash?: string | null, banner?: string | null, description?: string | null, icon?: string | null, features: DiscordGuildFeatures[], verification_level?: (null | DiscordVerificationLevels), vanity_url_code?: string | null, nsfw_level?: (null | DiscordGuildNSFWContentLevel), nsfw?: boolean | null, premium_subscription_count?: number | null};  //object
-export type DiscordInviteStageInstanceResponse = {topic: string, participant_count?: number | null, speaker_count?: number | null, members?: DiscordGuildMemberResponse[] | null};  //object
 export type DiscordInviteTargetTypes = (1 | 2 | 3);  //integer
 export type DiscordInviteTypes = (0 | 1 | 2);  //integer
 export type DiscordKeywordRuleResponse = {id: DiscordSnowflakeType, guild_id: DiscordSnowflakeType, creator_id: DiscordSnowflakeType, name: string, event_type: DiscordAutomodEventType, actions: (DiscordBlockMessageActionResponse | DiscordFlagToChannelActionResponse | DiscordQuarantineUserActionResponse | DiscordUserCommunicationDisabledActionResponse)[], trigger_type: (DiscordAutomodTriggerType), enabled?: boolean | null, exempt_roles?: DiscordSnowflakeType[] | null, exempt_channels?: DiscordSnowflakeType[] | null, trigger_metadata: DiscordKeywordTriggerMetadataResponse};  //object
@@ -590,6 +592,7 @@ export type DiscordError = {code: number, message: string};  //object
 export type DiscordInnerErrors = {_errors: DiscordError[]};  //object
 export type DiscordErrorDetails = (object | DiscordInnerErrors);  //undefined
 export type DiscordErrorResponse = (DiscordError & {errors?: DiscordErrorDetails});  //object
+export type DiscordGatewayEventNames = 'HELLO' | '    READY' | '    RESUMED' | '    RECONNECT' | '    INVALID_SESSION' | '    APPLICATION_COMMAND_PERMISSIONS_UPDATE' | '    AUTO_MODERATION_RULE_CREATE' | '    AUTO_MODERATION_RULE_UPDATE' | '    AUTO_MODERATION_RULE_DELETE' | '    AUTO_MODERATION_ACTION_EXECUTION' | '    CHANNEL_CREATE' | '    CHANNEL_UPDATE' | '    CHANNEL_DELETE' | '    CHANNEL_PINS_UPDATE' | '    THREAD_CREATE' | '    THREAD_UPDATE' | '    THREAD_DELETE' | '    THREAD_LIST_SYNC' | '    THREAD_MEMBER_UPDATE' | '    THREAD_MEMBERS_UPDATE' | '    ENTITLEMENT_CREATE' | '    ENTITLEMENT_UPDATE' | '    ENTITLEMENT_DELETE' | '    GUILD_CREATE' | '    GUILD_UPDATE' | '    GUILD_DELETE' | '    GUILD_AUDIT_LOG_ENTRY_CREATE' | '    GUILD_BAN_ADD' | '    GUILD_BAN_REMOVE' | '    GUILD_EMOJIS_UPDATE' | '    GUILD_STICKERS_UPDATE' | '    GUILD_INTEGRATIONS_UPDATE' | '    GUILD_MEMBER_ADD' | '    GUILD_MEMBER_REMOVE' | '    GUILD_MEMBER_UPDATE' | '    GUILD_MEMBERS_CHUNK' | '    GUILD_ROLE_CREATE' | '    GUILD_ROLE_UPDATE' | '    GUILD_ROLE_DELETE' | '    GUILD_SCHEDULED_EVENT_CREATE' | '    GUILD_SCHEDULED_EVENT_UPDATE' | '    GUILD_SCHEDULED_EVENT_DELETE' | '    GUILD_SCHEDULED_EVENT_USER_ADD' | '    GUILD_SCHEDULED_EVENT_USER_REMOVE' | '    GUILD_SOUNDBOARD_SOUND_CREATE' | '    GUILD_SOUNDBOARD_SOUND_UPDATE' | '    GUILD_SOUNDBOARD_SOUND_DELETE' | '    GUILD_SOUNDBOARD_SOUNDS_UPDATE' | '    SOUNDBOARD_SOUNDS' | '    INTEGRATION_CREATE' | '    INTEGRATION_UPDATE' | '    INTEGRATION_DELETE' | '    INTERACTION_CREATE' | '    INVITE_CREATE' | '    INVITE_DELETE' | '    MESSAGE_CREATE' | '    MESSAGE_UPDATE' | '    MESSAGE_DELETE' | '    MESSAGE_DELETE_BULK' | '    MESSAGE_REACTION_ADD' | '    MESSAGE_REACTION_REMOVE' | '    MESSAGE_REACTION_REMOVE_ALL' | '    MESSAGE_REACTION_REMOVE_EMOJI' | '    PRESENCE_UPDATE' | '    STAGE_INSTANCE_CREATE' | '    STAGE_INSTANCE_UPDATE' | '    STAGE_INSTANCE_DELETE' | '    SUBSCRIPTION_CREATE' | '    SUBSCRIPTION_UPDATE' | '    SUBSCRIPTION_DELETE' | '    TYPING_START' | '    USER_UPDATE' | '    VOICE_CHANNEL_EFFECT_SEND' | '    VOICE_STATE_UPDATE' | '    VOICE_SERVER_UPDATE' | '    WEBHOOKS_UPDATE' | '    MESSAGE_POLL_VOTE_ADD' | '    MESSAGE_POLL_VOTE_REMOVE';
 
 export interface DiscordGatewayPayload {
   "op": number;
@@ -597,5 +600,225 @@ export interface DiscordGatewayPayload {
   "s": number | null;
   "t": string | null;
 }
-export type DiscordGatewayEventNames = 'HELLO' | 'READY' | 'RESUMED' | 'RECONNECT' | 'INVALID_SESSION' | 'APPLICATION_COMMAND_PERMISSIONS_UPDATE' | 'AUTO_MODERATION_RULE_CREATE' | 'AUTO_MODERATION_RULE_UPDATE' | 'AUTO_MODERATION_RULE_DELETE' | 'AUTO_MODERATION_ACTION_EXECUTION' | 'CHANNEL_CREATE' | 'CHANNEL_UPDATE' | 'CHANNEL_DELETE' | 'CHANNEL_PINS_UPDATE' | 'THREAD_CREATE' | 'THREAD_UPDATE' | 'THREAD_DELETE' | 'THREAD_LIST_SYNC' | 'THREAD_MEMBER_UPDATE' | 'THREAD_MEMBERS_UPDATE' | 'ENTITLEMENT_CREATE' | 'ENTITLEMENT_UPDATE' | 'ENTITLEMENT_DELETE' | 'GUILD_CREATE' | 'GUILD_UPDATE' | 'GUILD_DELETE' | 'GUILD_AUDIT_LOG_ENTRY_CREATE' | 'GUILD_BAN_ADD' | 'GUILD_BAN_REMOVE' | 'GUILD_EMOJIS_UPDATE' | 'GUILD_STICKERS_UPDATE' | 'GUILD_INTEGRATIONS_UPDATE' | 'GUILD_MEMBER_ADD' | 'GUILD_MEMBER_REMOVE' | 'GUILD_MEMBER_UPDATE' | 'GUILD_MEMBERS_CHUNK' | 'GUILD_ROLE_CREATE' | 'GUILD_ROLE_UPDATE' | 'GUILD_ROLE_DELETE' | 'GUILD_SCHEDULED_EVENT_CREATE' | 'GUILD_SCHEDULED_EVENT_UPDATE' | 'GUILD_SCHEDULED_EVENT_DELETE' | 'GUILD_SCHEDULED_EVENT_USER_ADD' | 'GUILD_SCHEDULED_EVENT_USER_REMOVE' | 'GUILD_SOUNDBOARD_SOUND_CREATE' | 'GUILD_SOUNDBOARD_SOUND_UPDATE' | 'GUILD_SOUNDBOARD_SOUND_DELETE' | 'GUILD_SOUNDBOARD_SOUNDS_UPDATE' | 'SOUNDBOARD_SOUNDS' | 'INTEGRATION_CREATE' | 'INTEGRATION_UPDATE' | 'INTEGRATION_DELETE' | 'INTERACTION_CREATE' | 'INVITE_CREATE' | 'INVITE_DELETE' | 'MESSAGE_CREATE' | 'MESSAGE_UPDATE' | 'MESSAGE_DELETE' | 'MESSAGE_DELETE_BULK' | 'MESSAGE_REACTION_ADD' | 'MESSAGE_REACTION_REMOVE' | 'MESSAGE_REACTION_REMOVE_ALL' | 'MESSAGE_REACTION_REMOVE_EMOJI' | 'PRESENCE_UPDATE' | 'STAGE_INSTANCE_CREATE' | 'STAGE_INSTANCE_UPDATE' | 'STAGE_INSTANCE_DELETE' | 'SUBSCRIPTION_CREATE' | 'SUBSCRIPTION_UPDATE' | 'SUBSCRIPTION_DELETE' | 'TYPING_START' | 'USER_UPDATE' | 'VOICE_CHANNEL_EFFECT_SEND' | 'VOICE_STATE_UPDATE' | 'VOICE_SERVER_UPDATE' | 'WEBHOOKS_UPDATE' | 'MESSAGE_POLL_VOTE_ADD' | 'MESSAGE_POLL_VOTE_REMOVE';
 
+const {stringify} = JSON;
+export namespace JsonAPI {
+   export function getMyApplication(): RequestJson<DiscordPrivateApplicationResponse> { return new RequestJson<DiscordPrivateApplicationResponse>("/applications/@me", RequestMethod.GET); }
+   export function updateMyApplication(body: DiscordApplicationFormPartial): RequestJson<DiscordPrivateApplicationResponse> { return new RequestJson<DiscordPrivateApplicationResponse>("/applications/@me", RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getApplication(applicationId: DiscordSnowflakeType): RequestJson<DiscordPrivateApplicationResponse> { return new RequestJson<DiscordPrivateApplicationResponse>(`/applications/${applicationId}`, RequestMethod.GET); }
+   export function updateApplication(applicationId: DiscordSnowflakeType, body: DiscordApplicationFormPartial): RequestJson<DiscordPrivateApplicationResponse> { return new RequestJson<DiscordPrivateApplicationResponse>(`/applications/${applicationId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function applicationsGetActivityInstance(applicationId: DiscordSnowflakeType, instanceId: string): RequestJson<DiscordEmbeddedActivityInstance> { return new RequestJson<DiscordEmbeddedActivityInstance>(`/applications/${applicationId}/activity-instances/${instanceId}`, RequestMethod.GET); }
+   export function uploadApplicationAttachment(applicationId: DiscordSnowflakeType): RequestJson<DiscordActivitiesAttachmentResponse> { return new RequestJson<DiscordActivitiesAttachmentResponse>(`/applications/${applicationId}/attachment`, RequestMethod.POST); }
+   export function listApplicationCommands(applicationId: DiscordSnowflakeType): RequestJson<DiscordApplicationCommandResponse[] | null> { return new RequestJson<DiscordApplicationCommandResponse[] | null>(`/applications/${applicationId}/commands`, RequestMethod.GET); }
+   export function bulkSetApplicationCommands(applicationId: DiscordSnowflakeType, body: DiscordApplicationCommandUpdateRequest[] | null): RequestJson<DiscordApplicationCommandResponse[] | null> { return new RequestJson<DiscordApplicationCommandResponse[] | null>(`/applications/${applicationId}/commands`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function createApplicationCommand(applicationId: DiscordSnowflakeType, body: DiscordApplicationCommandCreateRequest): RequestJson<DiscordApplicationCommandResponse> { return new RequestJson<DiscordApplicationCommandResponse>(`/applications/${applicationId}/commands`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getApplicationCommand(applicationId: DiscordSnowflakeType, commandId: DiscordSnowflakeType): RequestJson<DiscordApplicationCommandResponse> { return new RequestJson<DiscordApplicationCommandResponse>(`/applications/${applicationId}/commands/${commandId}`, RequestMethod.GET); }
+   export function deleteApplicationCommand(applicationId: DiscordSnowflakeType, commandId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/applications/${applicationId}/commands/${commandId}`, RequestMethod.DELETE); }
+   export function updateApplicationCommand(applicationId: DiscordSnowflakeType, commandId: DiscordSnowflakeType, body: DiscordApplicationCommandPatchRequestPartial): RequestJson<DiscordApplicationCommandResponse> { return new RequestJson<DiscordApplicationCommandResponse>(`/applications/${applicationId}/commands/${commandId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function listApplicationEmojis(applicationId: DiscordSnowflakeType): RequestJson<DiscordListApplicationEmojisResponse> { return new RequestJson<DiscordListApplicationEmojisResponse>(`/applications/${applicationId}/emojis`, RequestMethod.GET); }
+   export function createApplicationEmoji(applicationId: DiscordSnowflakeType, body: {name: string, image: string}): RequestJson<DiscordEmojiResponse> { return new RequestJson<DiscordEmojiResponse>(`/applications/${applicationId}/emojis`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getApplicationEmoji(applicationId: DiscordSnowflakeType, emojiId: DiscordSnowflakeType): RequestJson<DiscordEmojiResponse> { return new RequestJson<DiscordEmojiResponse>(`/applications/${applicationId}/emojis/${emojiId}`, RequestMethod.GET); }
+   export function deleteApplicationEmoji(applicationId: DiscordSnowflakeType, emojiId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/applications/${applicationId}/emojis/${emojiId}`, RequestMethod.DELETE); }
+   export function updateApplicationEmoji(applicationId: DiscordSnowflakeType, emojiId: DiscordSnowflakeType, body: {name?: string}): RequestJson<DiscordEmojiResponse> { return new RequestJson<DiscordEmojiResponse>(`/applications/${applicationId}/emojis/${emojiId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getEntitlements(applicationId: DiscordSnowflakeType): RequestJson<(null | DiscordEntitlementResponse)[]> { return new RequestJson<(null | DiscordEntitlementResponse)[]>(`/applications/${applicationId}/entitlements`, RequestMethod.GET); }
+   export function createEntitlement(applicationId: DiscordSnowflakeType, body: DiscordCreateEntitlementRequestData): RequestJson<DiscordEntitlementResponse> { return new RequestJson<DiscordEntitlementResponse>(`/applications/${applicationId}/entitlements`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getEntitlement(applicationId: DiscordSnowflakeType, entitlementId: DiscordSnowflakeType): RequestJson<DiscordEntitlementResponse> { return new RequestJson<DiscordEntitlementResponse>(`/applications/${applicationId}/entitlements/${entitlementId}`, RequestMethod.GET); }
+   export function deleteEntitlement(applicationId: DiscordSnowflakeType, entitlementId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/applications/${applicationId}/entitlements/${entitlementId}`, RequestMethod.DELETE); }
+   export function consumeEntitlement(applicationId: DiscordSnowflakeType, entitlementId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/applications/${applicationId}/entitlements/${entitlementId}/consume`, RequestMethod.POST); }
+   export function listGuildApplicationCommands(applicationId: DiscordSnowflakeType, guildId: DiscordSnowflakeType): RequestJson<DiscordApplicationCommandResponse[] | null> { return new RequestJson<DiscordApplicationCommandResponse[] | null>(`/applications/${applicationId}/guilds/${guildId}/commands`, RequestMethod.GET); }
+   export function bulkSetGuildApplicationCommands(applicationId: DiscordSnowflakeType, guildId: DiscordSnowflakeType, body: DiscordApplicationCommandUpdateRequest[] | null): RequestJson<DiscordApplicationCommandResponse[] | null> { return new RequestJson<DiscordApplicationCommandResponse[] | null>(`/applications/${applicationId}/guilds/${guildId}/commands`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function createGuildApplicationCommand(applicationId: DiscordSnowflakeType, guildId: DiscordSnowflakeType, body: DiscordApplicationCommandCreateRequest): RequestJson<DiscordApplicationCommandResponse> { return new RequestJson<DiscordApplicationCommandResponse>(`/applications/${applicationId}/guilds/${guildId}/commands`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function listGuildApplicationCommandPermissions(applicationId: DiscordSnowflakeType, guildId: DiscordSnowflakeType): RequestJson<DiscordCommandPermissionsResponse[]> { return new RequestJson<DiscordCommandPermissionsResponse[]>(`/applications/${applicationId}/guilds/${guildId}/commands/permissions`, RequestMethod.GET); }
+   export function getGuildApplicationCommand(applicationId: DiscordSnowflakeType, guildId: DiscordSnowflakeType, commandId: DiscordSnowflakeType): RequestJson<DiscordApplicationCommandResponse> { return new RequestJson<DiscordApplicationCommandResponse>(`/applications/${applicationId}/guilds/${guildId}/commands/${commandId}`, RequestMethod.GET); }
+   export function deleteGuildApplicationCommand(applicationId: DiscordSnowflakeType, guildId: DiscordSnowflakeType, commandId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/applications/${applicationId}/guilds/${guildId}/commands/${commandId}`, RequestMethod.DELETE); }
+   export function updateGuildApplicationCommand(applicationId: DiscordSnowflakeType, guildId: DiscordSnowflakeType, commandId: DiscordSnowflakeType, body: DiscordApplicationCommandPatchRequestPartial): RequestJson<DiscordApplicationCommandResponse> { return new RequestJson<DiscordApplicationCommandResponse>(`/applications/${applicationId}/guilds/${guildId}/commands/${commandId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getGuildApplicationCommandPermissions(applicationId: DiscordSnowflakeType, guildId: DiscordSnowflakeType, commandId: DiscordSnowflakeType): RequestJson<DiscordCommandPermissionsResponse> { return new RequestJson<DiscordCommandPermissionsResponse>(`/applications/${applicationId}/guilds/${guildId}/commands/${commandId}/permissions`, RequestMethod.GET); }
+   export function setGuildApplicationCommandPermissions(applicationId: DiscordSnowflakeType, guildId: DiscordSnowflakeType, commandId: DiscordSnowflakeType, body: {permissions?: DiscordApplicationCommandPermission[] | null}): RequestJson<DiscordCommandPermissionsResponse> { return new RequestJson<DiscordCommandPermissionsResponse>(`/applications/${applicationId}/guilds/${guildId}/commands/${commandId}/permissions`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function getApplicationRoleConnectionsMetadata(applicationId: DiscordSnowflakeType): RequestJson<DiscordApplicationRoleConnectionsMetadataItemResponse[] | null> { return new RequestJson<DiscordApplicationRoleConnectionsMetadataItemResponse[] | null>(`/applications/${applicationId}/role-connections/metadata`, RequestMethod.GET); }
+   export function updateApplicationRoleConnectionsMetadata(applicationId: DiscordSnowflakeType, body: DiscordApplicationRoleConnectionsMetadataItemRequest[] | null): RequestJson<DiscordApplicationRoleConnectionsMetadataItemResponse[] | null> { return new RequestJson<DiscordApplicationRoleConnectionsMetadataItemResponse[] | null>(`/applications/${applicationId}/role-connections/metadata`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function getChannel(channelId: DiscordSnowflakeType): RequestJson<(DiscordGuildChannelResponse | DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse | DiscordThreadResponse)> { return new RequestJson<(DiscordGuildChannelResponse | DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse | DiscordThreadResponse)>(`/channels/${channelId}`, RequestMethod.GET); }
+   export function deleteChannel(channelId: DiscordSnowflakeType): RequestJson<(DiscordGuildChannelResponse | DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse | DiscordThreadResponse)> { return new RequestJson<(DiscordGuildChannelResponse | DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse | DiscordThreadResponse)>(`/channels/${channelId}`, RequestMethod.DELETE); }
+   export function updateChannel(channelId: DiscordSnowflakeType, body: (DiscordUpdateDMRequestPartial | DiscordUpdateGroupDMRequestPartial | DiscordUpdateGuildChannelRequestPartial | DiscordUpdateThreadRequestPartial)): RequestJson<(DiscordGuildChannelResponse | DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse | DiscordThreadResponse)> { return new RequestJson<(DiscordGuildChannelResponse | DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse | DiscordThreadResponse)>(`/channels/${channelId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function followChannel(channelId: DiscordSnowflakeType, body: {webhook_channel_id: DiscordSnowflakeType}): RequestJson<DiscordChannelFollowerResponse> { return new RequestJson<DiscordChannelFollowerResponse>(`/channels/${channelId}/followers`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function listChannelInvites(channelId: DiscordSnowflakeType): RequestJson<(DiscordFriendInviteResponse | DiscordGroupDMInviteResponse | DiscordGuildInviteResponse)[] | null> { return new RequestJson<(DiscordFriendInviteResponse | DiscordGroupDMInviteResponse | DiscordGuildInviteResponse)[] | null>(`/channels/${channelId}/invites`, RequestMethod.GET); }
+   export function createChannelInvite(channelId: DiscordSnowflakeType, body: (DiscordCreateGroupDMInviteRequest | DiscordCreateGuildInviteRequest)): RequestJson<(DiscordFriendInviteResponse | DiscordGroupDMInviteResponse | DiscordGuildInviteResponse)> { return new RequestJson<(DiscordFriendInviteResponse | DiscordGroupDMInviteResponse | DiscordGuildInviteResponse)>(`/channels/${channelId}/invites`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function listMessages(channelId: DiscordSnowflakeType): RequestJson<DiscordMessageResponse[] | null> { return new RequestJson<DiscordMessageResponse[] | null>(`/channels/${channelId}/messages`, RequestMethod.GET); }
+   export function createMessage(channelId: DiscordSnowflakeType, body: DiscordMessageCreateRequest): RequestJson<DiscordMessageResponse> { return new RequestJson<DiscordMessageResponse>(`/channels/${channelId}/messages`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function bulkDeleteMessages(channelId: DiscordSnowflakeType, body: {messages: DiscordSnowflakeType[]}): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/messages/bulk-delete`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getMessage(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType): RequestJson<DiscordMessageResponse> { return new RequestJson<DiscordMessageResponse>(`/channels/${channelId}/messages/${messageId}`, RequestMethod.GET); }
+   export function deleteMessage(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/messages/${messageId}`, RequestMethod.DELETE); }
+   export function updateMessage(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType, body: DiscordMessageEditRequestPartial): RequestJson<DiscordMessageResponse> { return new RequestJson<DiscordMessageResponse>(`/channels/${channelId}/messages/${messageId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function crosspostMessage(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType): RequestJson<DiscordMessageResponse> { return new RequestJson<DiscordMessageResponse>(`/channels/${channelId}/messages/${messageId}/crosspost`, RequestMethod.POST); }
+   export function deleteAllMessageReactions(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/messages/${messageId}/reactions`, RequestMethod.DELETE); }
+   export function listMessageReactionsByEmoji(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType, emojiName: string): RequestJson<DiscordUserResponse[]> { return new RequestJson<DiscordUserResponse[]>(`/channels/${channelId}/messages/${messageId}/reactions/${emojiName}`, RequestMethod.GET); }
+   export function deleteAllMessageReactionsByEmoji(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType, emojiName: string): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/messages/${messageId}/reactions/${emojiName}`, RequestMethod.DELETE); }
+   export function addMyMessageReaction(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType, emojiName: string): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/messages/${messageId}/reactions/${emojiName}/@me`, RequestMethod.PUT); }
+   export function deleteMyMessageReaction(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType, emojiName: string): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/messages/${messageId}/reactions/${emojiName}/@me`, RequestMethod.DELETE); }
+   export function deleteUserMessageReaction(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType, emojiName: string, userId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/messages/${messageId}/reactions/${emojiName}/${userId}`, RequestMethod.DELETE); }
+   export function createThreadFromMessage(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType, body: DiscordCreateTextThreadWithMessageRequest): RequestJson<DiscordThreadResponse> { return new RequestJson<DiscordThreadResponse>(`/channels/${channelId}/messages/${messageId}/threads`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function setChannelPermissionOverwrite(channelId: DiscordSnowflakeType, overwriteId: DiscordSnowflakeType, body: {type?: (null | DiscordChannelPermissionOverwrites), allow?: number | null, deny?: number | null}): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/permissions/${overwriteId}`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function deleteChannelPermissionOverwrite(channelId: DiscordSnowflakeType, overwriteId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/permissions/${overwriteId}`, RequestMethod.DELETE); }
+   export function listPinnedMessages(channelId: DiscordSnowflakeType): RequestJson<DiscordMessageResponse[] | null> { return new RequestJson<DiscordMessageResponse[] | null>(`/channels/${channelId}/pins`, RequestMethod.GET); }
+   export function pinMessage(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/pins/${messageId}`, RequestMethod.PUT); }
+   export function unpinMessage(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/pins/${messageId}`, RequestMethod.DELETE); }
+   export function getAnswerVoters(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType, answerId: number): RequestJson<DiscordPollAnswerDetailsResponse> { return new RequestJson<DiscordPollAnswerDetailsResponse>(`/channels/${channelId}/polls/${messageId}/answers/${answerId}`, RequestMethod.GET); }
+   export function pollExpire(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType): RequestJson<DiscordMessageResponse> { return new RequestJson<DiscordMessageResponse>(`/channels/${channelId}/polls/${messageId}/expire`, RequestMethod.POST); }
+   export function addGroupDmUser(channelId: DiscordSnowflakeType, userId: DiscordSnowflakeType, body: {access_token?: string | null, nick?: string | null}): RequestJson<(DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse)> { return new RequestJson<(DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse)>(`/channels/${channelId}/recipients/${userId}`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function deleteGroupDmUser(channelId: DiscordSnowflakeType, userId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/recipients/${userId}`, RequestMethod.DELETE); }
+   export function sendSoundboardSound(channelId: DiscordSnowflakeType, body: DiscordSoundboardSoundSendRequest): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/send-soundboard-sound`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function listThreadMembers(channelId: DiscordSnowflakeType): RequestJson<DiscordThreadMemberResponse[]> { return new RequestJson<DiscordThreadMemberResponse[]>(`/channels/${channelId}/thread-members`, RequestMethod.GET); }
+   export function joinThread(channelId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/thread-members/@me`, RequestMethod.PUT); }
+   export function leaveThread(channelId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/thread-members/@me`, RequestMethod.DELETE); }
+   export function getThreadMember(channelId: DiscordSnowflakeType, userId: DiscordSnowflakeType): RequestJson<DiscordThreadMemberResponse> { return new RequestJson<DiscordThreadMemberResponse>(`/channels/${channelId}/thread-members/${userId}`, RequestMethod.GET); }
+   export function addThreadMember(channelId: DiscordSnowflakeType, userId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/thread-members/${userId}`, RequestMethod.PUT); }
+   export function deleteThreadMember(channelId: DiscordSnowflakeType, userId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/channels/${channelId}/thread-members/${userId}`, RequestMethod.DELETE); }
+   export function createThread(channelId: DiscordSnowflakeType, body: (DiscordCreateForumThreadRequest | DiscordCreateTextThreadWithoutMessageRequest)): RequestJson<DiscordCreatedThreadResponse> { return new RequestJson<DiscordCreatedThreadResponse>(`/channels/${channelId}/threads`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function listPrivateArchivedThreads(channelId: DiscordSnowflakeType): RequestJson<DiscordThreadsResponse> { return new RequestJson<DiscordThreadsResponse>(`/channels/${channelId}/threads/archived/private`, RequestMethod.GET); }
+   export function listPublicArchivedThreads(channelId: DiscordSnowflakeType): RequestJson<DiscordThreadsResponse> { return new RequestJson<DiscordThreadsResponse>(`/channels/${channelId}/threads/archived/public`, RequestMethod.GET); }
+   export function threadSearch(channelId: DiscordSnowflakeType): RequestJson<DiscordThreadSearchResponse> { return new RequestJson<DiscordThreadSearchResponse>(`/channels/${channelId}/threads/search`, RequestMethod.GET); }
+   export function triggerTypingIndicator(channelId: DiscordSnowflakeType): RequestJson<DiscordTypingIndicatorResponse> { return new RequestJson<DiscordTypingIndicatorResponse>(`/channels/${channelId}/typing`, RequestMethod.POST); }
+   export function listMyPrivateArchivedThreads(channelId: DiscordSnowflakeType): RequestJson<DiscordThreadsResponse> { return new RequestJson<DiscordThreadsResponse>(`/channels/${channelId}/users/@me/threads/archived/private`, RequestMethod.GET); }
+   export function listChannelWebhooks(channelId: DiscordSnowflakeType): RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)[] | null> { return new RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)[] | null>(`/channels/${channelId}/webhooks`, RequestMethod.GET); }
+   export function createWebhook(channelId: DiscordSnowflakeType, body: {name: string, avatar?: string | null}): RequestJson<DiscordGuildIncomingWebhookResponse> { return new RequestJson<DiscordGuildIncomingWebhookResponse>(`/channels/${channelId}/webhooks`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getGateway(): RequestJson<DiscordGatewayResponse> { return new RequestJson<DiscordGatewayResponse>("/gateway", RequestMethod.GET); }
+   export function getBotGateway(): RequestJson<DiscordGatewayBotResponse> { return new RequestJson<DiscordGatewayBotResponse>("/gateway/bot", RequestMethod.GET); }
+   export function createGuild(body: DiscordGuildCreateRequest): RequestJson<DiscordGuildResponse> { return new RequestJson<DiscordGuildResponse>("/guilds", RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getGuildTemplate(code: string): RequestJson<DiscordGuildTemplateResponse> { return new RequestJson<DiscordGuildTemplateResponse>(`/guilds/templates/${code}`, RequestMethod.GET); }
+   export function createGuildFromTemplate(code: string, body: {name: string, icon?: string | null}): RequestJson<DiscordGuildResponse> { return new RequestJson<DiscordGuildResponse>(`/guilds/templates/${code}`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getGuild(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildWithCountsResponse> { return new RequestJson<DiscordGuildWithCountsResponse>(`/guilds/${guildId}`, RequestMethod.GET); }
+   export function deleteGuild(guildId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}`, RequestMethod.DELETE); }
+   export function updateGuild(guildId: DiscordSnowflakeType, body: DiscordGuildPatchRequestPartial): RequestJson<DiscordGuildResponse> { return new RequestJson<DiscordGuildResponse>(`/guilds/${guildId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function listGuildAuditLogEntries(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildAuditLogResponse> { return new RequestJson<DiscordGuildAuditLogResponse>(`/guilds/${guildId}/audit-logs`, RequestMethod.GET); }
+   export function listAutoModerationRules(guildId: DiscordSnowflakeType): RequestJson<(DiscordDefaultKeywordRuleResponse | DiscordKeywordRuleResponse | DiscordMLSpamRuleResponse | DiscordMentionSpamRuleResponse | DiscordSpamLinkRuleResponse | null)[] | null> { return new RequestJson<(DiscordDefaultKeywordRuleResponse | DiscordKeywordRuleResponse | DiscordMLSpamRuleResponse | DiscordMentionSpamRuleResponse | DiscordSpamLinkRuleResponse | null)[] | null>(`/guilds/${guildId}/auto-moderation/rules`, RequestMethod.GET); }
+   export function createAutoModerationRule(guildId: DiscordSnowflakeType, body: (DiscordDefaultKeywordListUpsertRequest | DiscordKeywordUpsertRequest | DiscordMLSpamUpsertRequest | DiscordMentionSpamUpsertRequest)): RequestJson<(DiscordDefaultKeywordRuleResponse | DiscordKeywordRuleResponse | DiscordMLSpamRuleResponse | DiscordMentionSpamRuleResponse | DiscordSpamLinkRuleResponse)> { return new RequestJson<(DiscordDefaultKeywordRuleResponse | DiscordKeywordRuleResponse | DiscordMLSpamRuleResponse | DiscordMentionSpamRuleResponse | DiscordSpamLinkRuleResponse)>(`/guilds/${guildId}/auto-moderation/rules`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getAutoModerationRule(guildId: DiscordSnowflakeType, ruleId: DiscordSnowflakeType): RequestJson<(DiscordDefaultKeywordRuleResponse | DiscordKeywordRuleResponse | DiscordMLSpamRuleResponse | DiscordMentionSpamRuleResponse | DiscordSpamLinkRuleResponse)> { return new RequestJson<(DiscordDefaultKeywordRuleResponse | DiscordKeywordRuleResponse | DiscordMLSpamRuleResponse | DiscordMentionSpamRuleResponse | DiscordSpamLinkRuleResponse)>(`/guilds/${guildId}/auto-moderation/rules/${ruleId}`, RequestMethod.GET); }
+   export function deleteAutoModerationRule(guildId: DiscordSnowflakeType, ruleId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/auto-moderation/rules/${ruleId}`, RequestMethod.DELETE); }
+   export function updateAutoModerationRule(guildId: DiscordSnowflakeType, ruleId: DiscordSnowflakeType, body: (DiscordDefaultKeywordListUpsertRequestPartial | DiscordKeywordUpsertRequestPartial | DiscordMLSpamUpsertRequestPartial | DiscordMentionSpamUpsertRequestPartial)): RequestJson<(DiscordDefaultKeywordRuleResponse | DiscordKeywordRuleResponse | DiscordMLSpamRuleResponse | DiscordMentionSpamRuleResponse | DiscordSpamLinkRuleResponse)> { return new RequestJson<(DiscordDefaultKeywordRuleResponse | DiscordKeywordRuleResponse | DiscordMLSpamRuleResponse | DiscordMentionSpamRuleResponse | DiscordSpamLinkRuleResponse)>(`/guilds/${guildId}/auto-moderation/rules/${ruleId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function listGuildBans(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildBanResponse[] | null> { return new RequestJson<DiscordGuildBanResponse[] | null>(`/guilds/${guildId}/bans`, RequestMethod.GET); }
+   export function getGuildBan(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType): RequestJson<DiscordGuildBanResponse> { return new RequestJson<DiscordGuildBanResponse>(`/guilds/${guildId}/bans/${userId}`, RequestMethod.GET); }
+   export function banUserFromGuild(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType, body: {delete_message_seconds?: number | null, delete_message_days?: number | null}): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/bans/${userId}`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function unbanUserFromGuild(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/bans/${userId}`, RequestMethod.DELETE); }
+   export function bulkBanUsersFromGuild(guildId: DiscordSnowflakeType, body: {user_ids: DiscordSnowflakeType[], delete_message_seconds?: number | null}): RequestJson<DiscordBulkBanUsersResponse> { return new RequestJson<DiscordBulkBanUsersResponse>(`/guilds/${guildId}/bulk-ban`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function listGuildChannels(guildId: DiscordSnowflakeType): RequestJson<(DiscordGuildChannelResponse | DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse | DiscordThreadResponse)[] | null> { return new RequestJson<(DiscordGuildChannelResponse | DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse | DiscordThreadResponse)[] | null>(`/guilds/${guildId}/channels`, RequestMethod.GET); }
+   export function createGuildChannel(guildId: DiscordSnowflakeType, body: DiscordCreateGuildChannelRequest): RequestJson<DiscordGuildChannelResponse> { return new RequestJson<DiscordGuildChannelResponse>(`/guilds/${guildId}/channels`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function bulkUpdateGuildChannels(guildId: DiscordSnowflakeType, body: {id?: DiscordSnowflakeType, position?: number | null, parent_id?: (null | DiscordSnowflakeType), lock_permissions?: boolean | null}[]): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/channels`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function listGuildEmojis(guildId: DiscordSnowflakeType): RequestJson<DiscordEmojiResponse[] | null> { return new RequestJson<DiscordEmojiResponse[] | null>(`/guilds/${guildId}/emojis`, RequestMethod.GET); }
+   export function createGuildEmoji(guildId: DiscordSnowflakeType, body: {name: string, image: string, roles?: (null | DiscordSnowflakeType)[] | null}): RequestJson<DiscordEmojiResponse> { return new RequestJson<DiscordEmojiResponse>(`/guilds/${guildId}/emojis`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getGuildEmoji(guildId: DiscordSnowflakeType, emojiId: DiscordSnowflakeType): RequestJson<DiscordEmojiResponse> { return new RequestJson<DiscordEmojiResponse>(`/guilds/${guildId}/emojis/${emojiId}`, RequestMethod.GET); }
+   export function deleteGuildEmoji(guildId: DiscordSnowflakeType, emojiId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/emojis/${emojiId}`, RequestMethod.DELETE); }
+   export function updateGuildEmoji(guildId: DiscordSnowflakeType, emojiId: DiscordSnowflakeType, body: {name?: string, roles?: (null | DiscordSnowflakeType)[] | null}): RequestJson<DiscordEmojiResponse> { return new RequestJson<DiscordEmojiResponse>(`/guilds/${guildId}/emojis/${emojiId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function listGuildIntegrations(guildId: DiscordSnowflakeType): RequestJson<(DiscordDiscordIntegrationResponse | DiscordExternalConnectionIntegrationResponse | DiscordGuildSubscriptionIntegrationResponse)[] | null> { return new RequestJson<(DiscordDiscordIntegrationResponse | DiscordExternalConnectionIntegrationResponse | DiscordGuildSubscriptionIntegrationResponse)[] | null>(`/guilds/${guildId}/integrations`, RequestMethod.GET); }
+   export function deleteGuildIntegration(guildId: DiscordSnowflakeType, integrationId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/integrations/${integrationId}`, RequestMethod.DELETE); }
+   export function listGuildInvites(guildId: DiscordSnowflakeType): RequestJson<(DiscordFriendInviteResponse | DiscordGroupDMInviteResponse | DiscordGuildInviteResponse)[] | null> { return new RequestJson<(DiscordFriendInviteResponse | DiscordGroupDMInviteResponse | DiscordGuildInviteResponse)[] | null>(`/guilds/${guildId}/invites`, RequestMethod.GET); }
+   export function listGuildMembers(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildMemberResponse[]> { return new RequestJson<DiscordGuildMemberResponse[]>(`/guilds/${guildId}/members`, RequestMethod.GET); }
+   export function updateMyGuildMember(guildId: DiscordSnowflakeType, body: {nick?: string | null}): RequestJson<DiscordPrivateGuildMemberResponse> { return new RequestJson<DiscordPrivateGuildMemberResponse>(`/guilds/${guildId}/members/@me`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function searchGuildMembers(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildMemberResponse[]> { return new RequestJson<DiscordGuildMemberResponse[]>(`/guilds/${guildId}/members/search`, RequestMethod.GET); }
+   export function getGuildMember(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType): RequestJson<DiscordGuildMemberResponse> { return new RequestJson<DiscordGuildMemberResponse>(`/guilds/${guildId}/members/${userId}`, RequestMethod.GET); }
+   export function addGuildMember(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType, body: {nick?: string | null, roles?: (null | DiscordSnowflakeType)[] | null, mute?: boolean | null, deaf?: boolean | null, access_token: string, flags?: number | null}): RequestJson<DiscordGuildMemberResponse> { return new RequestJson<DiscordGuildMemberResponse>(`/guilds/${guildId}/members/${userId}`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function deleteGuildMember(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/members/${userId}`, RequestMethod.DELETE); }
+   export function updateGuildMember(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType, body: {nick?: string | null, roles?: (null | DiscordSnowflakeType)[] | null, mute?: boolean | null, deaf?: boolean | null, channel_id?: (null | DiscordSnowflakeType), communication_disabled_until?: string | null, flags?: number | null}): RequestJson<DiscordGuildMemberResponse> { return new RequestJson<DiscordGuildMemberResponse>(`/guilds/${guildId}/members/${userId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function addGuildMemberRole(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType, roleId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/members/${userId}/roles/${roleId}`, RequestMethod.PUT); }
+   export function deleteGuildMemberRole(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType, roleId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/members/${userId}/roles/${roleId}`, RequestMethod.DELETE); }
+   export function setGuildMfaLevel(guildId: DiscordSnowflakeType, body: {level: DiscordGuildMFALevel}): RequestJson<DiscordGuildMFALevelResponse> { return new RequestJson<DiscordGuildMFALevelResponse>(`/guilds/${guildId}/mfa`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getGuildNewMemberWelcome(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildHomeSettingsResponse> { return new RequestJson<DiscordGuildHomeSettingsResponse>(`/guilds/${guildId}/new-member-welcome`, RequestMethod.GET); }
+   export function getGuildsOnboarding(guildId: DiscordSnowflakeType): RequestJson<DiscordUserGuildOnboardingResponse> { return new RequestJson<DiscordUserGuildOnboardingResponse>(`/guilds/${guildId}/onboarding`, RequestMethod.GET); }
+   export function putGuildsOnboarding(guildId: DiscordSnowflakeType, body: DiscordUpdateGuildOnboardingRequest): RequestJson<DiscordGuildOnboardingResponse> { return new RequestJson<DiscordGuildOnboardingResponse>(`/guilds/${guildId}/onboarding`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function getGuildPreview(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildPreviewResponse> { return new RequestJson<DiscordGuildPreviewResponse>(`/guilds/${guildId}/preview`, RequestMethod.GET); }
+   export function previewPruneGuild(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildPruneResponse> { return new RequestJson<DiscordGuildPruneResponse>(`/guilds/${guildId}/prune`, RequestMethod.GET); }
+   export function pruneGuild(guildId: DiscordSnowflakeType, body: {days?: number | null, compute_prune_count?: boolean | null, include_roles?: (string | (null | DiscordSnowflakeType)[] | null)}): RequestJson<DiscordGuildPruneResponse> { return new RequestJson<DiscordGuildPruneResponse>(`/guilds/${guildId}/prune`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function listGuildVoiceRegions(guildId: DiscordSnowflakeType): RequestJson<DiscordVoiceRegionResponse[] | null> { return new RequestJson<DiscordVoiceRegionResponse[] | null>(`/guilds/${guildId}/regions`, RequestMethod.GET); }
+   export function listGuildRoles(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildRoleResponse[]> { return new RequestJson<DiscordGuildRoleResponse[]>(`/guilds/${guildId}/roles`, RequestMethod.GET); }
+   export function createGuildRole(guildId: DiscordSnowflakeType, body: {name?: string | null, permissions?: number | null, color?: number | null, hoist?: boolean | null, mentionable?: boolean | null, icon?: string | null, unicode_emoji?: string | null}): RequestJson<DiscordGuildRoleResponse> { return new RequestJson<DiscordGuildRoleResponse>(`/guilds/${guildId}/roles`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function bulkUpdateGuildRoles(guildId: DiscordSnowflakeType, body: {id?: (null | DiscordSnowflakeType), position?: number | null}[]): RequestJson<DiscordGuildRoleResponse[]> { return new RequestJson<DiscordGuildRoleResponse[]>(`/guilds/${guildId}/roles`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getGuildRole(guildId: DiscordSnowflakeType, roleId: DiscordSnowflakeType): RequestJson<DiscordGuildRoleResponse> { return new RequestJson<DiscordGuildRoleResponse>(`/guilds/${guildId}/roles/${roleId}`, RequestMethod.GET); }
+   export function deleteGuildRole(guildId: DiscordSnowflakeType, roleId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/roles/${roleId}`, RequestMethod.DELETE); }
+   export function updateGuildRole(guildId: DiscordSnowflakeType, roleId: DiscordSnowflakeType, body: {name?: string | null, permissions?: number | null, color?: number | null, hoist?: boolean | null, mentionable?: boolean | null, icon?: string | null, unicode_emoji?: string | null}): RequestJson<DiscordGuildRoleResponse> { return new RequestJson<DiscordGuildRoleResponse>(`/guilds/${guildId}/roles/${roleId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function listGuildScheduledEvents(guildId: DiscordSnowflakeType): RequestJson<(DiscordExternalScheduledEventResponse | DiscordStageScheduledEventResponse | DiscordVoiceScheduledEventResponse)[] | null> { return new RequestJson<(DiscordExternalScheduledEventResponse | DiscordStageScheduledEventResponse | DiscordVoiceScheduledEventResponse)[] | null>(`/guilds/${guildId}/scheduled-events`, RequestMethod.GET); }
+   export function createGuildScheduledEvent(guildId: DiscordSnowflakeType, body: (DiscordExternalScheduledEventCreateRequest | DiscordStageScheduledEventCreateRequest | DiscordVoiceScheduledEventCreateRequest)): RequestJson<(DiscordExternalScheduledEventResponse | DiscordStageScheduledEventResponse | DiscordVoiceScheduledEventResponse)> { return new RequestJson<(DiscordExternalScheduledEventResponse | DiscordStageScheduledEventResponse | DiscordVoiceScheduledEventResponse)>(`/guilds/${guildId}/scheduled-events`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getGuildScheduledEvent(guildId: DiscordSnowflakeType, guildScheduledEventId: DiscordSnowflakeType): RequestJson<(DiscordExternalScheduledEventResponse | DiscordStageScheduledEventResponse | DiscordVoiceScheduledEventResponse)> { return new RequestJson<(DiscordExternalScheduledEventResponse | DiscordStageScheduledEventResponse | DiscordVoiceScheduledEventResponse)>(`/guilds/${guildId}/scheduled-events/${guildScheduledEventId}`, RequestMethod.GET); }
+   export function deleteGuildScheduledEvent(guildId: DiscordSnowflakeType, guildScheduledEventId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/scheduled-events/${guildScheduledEventId}`, RequestMethod.DELETE); }
+   export function updateGuildScheduledEvent(guildId: DiscordSnowflakeType, guildScheduledEventId: DiscordSnowflakeType, body: (DiscordExternalScheduledEventPatchRequestPartial | DiscordStageScheduledEventPatchRequestPartial | DiscordVoiceScheduledEventPatchRequestPartial)): RequestJson<(DiscordExternalScheduledEventResponse | DiscordStageScheduledEventResponse | DiscordVoiceScheduledEventResponse)> { return new RequestJson<(DiscordExternalScheduledEventResponse | DiscordStageScheduledEventResponse | DiscordVoiceScheduledEventResponse)>(`/guilds/${guildId}/scheduled-events/${guildScheduledEventId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function listGuildScheduledEventUsers(guildId: DiscordSnowflakeType, guildScheduledEventId: DiscordSnowflakeType): RequestJson<DiscordScheduledEventUserResponse[] | null> { return new RequestJson<DiscordScheduledEventUserResponse[] | null>(`/guilds/${guildId}/scheduled-events/${guildScheduledEventId}/users`, RequestMethod.GET); }
+   export function listGuildSoundboardSounds(guildId: DiscordSnowflakeType): RequestJson<DiscordListGuildSoundboardSoundsResponse> { return new RequestJson<DiscordListGuildSoundboardSoundsResponse>(`/guilds/${guildId}/soundboard-sounds`, RequestMethod.GET); }
+   export function createGuildSoundboardSound(guildId: DiscordSnowflakeType, body: DiscordSoundboardCreateRequest): RequestJson<DiscordSoundboardSoundResponse> { return new RequestJson<DiscordSoundboardSoundResponse>(`/guilds/${guildId}/soundboard-sounds`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getGuildSoundboardSound(guildId: DiscordSnowflakeType, soundId: DiscordSnowflakeType): RequestJson<DiscordSoundboardSoundResponse> { return new RequestJson<DiscordSoundboardSoundResponse>(`/guilds/${guildId}/soundboard-sounds/${soundId}`, RequestMethod.GET); }
+   export function deleteGuildSoundboardSound(guildId: DiscordSnowflakeType, soundId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/soundboard-sounds/${soundId}`, RequestMethod.DELETE); }
+   export function updateGuildSoundboardSound(guildId: DiscordSnowflakeType, soundId: DiscordSnowflakeType, body: DiscordSoundboardPatchRequestPartial): RequestJson<DiscordSoundboardSoundResponse> { return new RequestJson<DiscordSoundboardSoundResponse>(`/guilds/${guildId}/soundboard-sounds/${soundId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function listGuildStickers(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildStickerResponse[]> { return new RequestJson<DiscordGuildStickerResponse[]>(`/guilds/${guildId}/stickers`, RequestMethod.GET); }
+   export function createGuildSticker(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildStickerResponse> { return new RequestJson<DiscordGuildStickerResponse>(`/guilds/${guildId}/stickers`, RequestMethod.POST); }
+   export function getGuildSticker(guildId: DiscordSnowflakeType, stickerId: DiscordSnowflakeType): RequestJson<DiscordGuildStickerResponse> { return new RequestJson<DiscordGuildStickerResponse>(`/guilds/${guildId}/stickers/${stickerId}`, RequestMethod.GET); }
+   export function deleteGuildSticker(guildId: DiscordSnowflakeType, stickerId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/stickers/${stickerId}`, RequestMethod.DELETE); }
+   export function updateGuildSticker(guildId: DiscordSnowflakeType, stickerId: DiscordSnowflakeType, body: {name?: string, tags?: string, description?: string | null}): RequestJson<DiscordGuildStickerResponse> { return new RequestJson<DiscordGuildStickerResponse>(`/guilds/${guildId}/stickers/${stickerId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function listGuildTemplates(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildTemplateResponse[] | null> { return new RequestJson<DiscordGuildTemplateResponse[] | null>(`/guilds/${guildId}/templates`, RequestMethod.GET); }
+   export function createGuildTemplate(guildId: DiscordSnowflakeType, body: {name: string, description?: string | null}): RequestJson<DiscordGuildTemplateResponse> { return new RequestJson<DiscordGuildTemplateResponse>(`/guilds/${guildId}/templates`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function syncGuildTemplate(guildId: DiscordSnowflakeType, code: string): RequestJson<DiscordGuildTemplateResponse> { return new RequestJson<DiscordGuildTemplateResponse>(`/guilds/${guildId}/templates/${code}`, RequestMethod.PUT); }
+   export function deleteGuildTemplate(guildId: DiscordSnowflakeType, code: string): RequestJson<DiscordGuildTemplateResponse> { return new RequestJson<DiscordGuildTemplateResponse>(`/guilds/${guildId}/templates/${code}`, RequestMethod.DELETE); }
+   export function updateGuildTemplate(guildId: DiscordSnowflakeType, code: string, body: {name?: string, description?: string | null}): RequestJson<DiscordGuildTemplateResponse> { return new RequestJson<DiscordGuildTemplateResponse>(`/guilds/${guildId}/templates/${code}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getActiveGuildThreads(guildId: DiscordSnowflakeType): RequestJson<DiscordThreadsResponse> { return new RequestJson<DiscordThreadsResponse>(`/guilds/${guildId}/threads/active`, RequestMethod.GET); }
+   export function getGuildVanityUrl(guildId: DiscordSnowflakeType): RequestJson<DiscordVanityURLResponse> { return new RequestJson<DiscordVanityURLResponse>(`/guilds/${guildId}/vanity-url`, RequestMethod.GET); }
+   export function getSelfVoiceState(guildId: DiscordSnowflakeType): RequestJson<DiscordVoiceStateResponse> { return new RequestJson<DiscordVoiceStateResponse>(`/guilds/${guildId}/voice-states/@me`, RequestMethod.GET); }
+   export function updateSelfVoiceState(guildId: DiscordSnowflakeType, body: {request_to_speak_timestamp?: string | null, suppress?: boolean | null, channel_id?: (null | DiscordSnowflakeType)}): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/voice-states/@me`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getVoiceState(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType): RequestJson<DiscordVoiceStateResponse> { return new RequestJson<DiscordVoiceStateResponse>(`/guilds/${guildId}/voice-states/${userId}`, RequestMethod.GET); }
+   export function updateVoiceState(guildId: DiscordSnowflakeType, userId: DiscordSnowflakeType, body: {suppress?: boolean | null, channel_id?: (null | DiscordSnowflakeType)}): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/voice-states/${userId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getGuildWebhooks(guildId: DiscordSnowflakeType): RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)[] | null> { return new RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)[] | null>(`/guilds/${guildId}/webhooks`, RequestMethod.GET); }
+   export function getGuildWelcomeScreen(guildId: DiscordSnowflakeType): RequestJson<DiscordGuildWelcomeScreenResponse> { return new RequestJson<DiscordGuildWelcomeScreenResponse>(`/guilds/${guildId}/welcome-screen`, RequestMethod.GET); }
+   export function updateGuildWelcomeScreen(guildId: DiscordSnowflakeType, body: DiscordWelcomeScreenPatchRequestPartial): RequestJson<DiscordGuildWelcomeScreenResponse> { return new RequestJson<DiscordGuildWelcomeScreenResponse>(`/guilds/${guildId}/welcome-screen`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getGuildWidgetSettings(guildId: DiscordSnowflakeType): RequestJson<DiscordWidgetSettingsResponse> { return new RequestJson<DiscordWidgetSettingsResponse>(`/guilds/${guildId}/widget`, RequestMethod.GET); }
+   export function updateGuildWidgetSettings(guildId: DiscordSnowflakeType, body: {channel_id?: (null | DiscordSnowflakeType), enabled?: boolean | null}): RequestJson<DiscordWidgetSettingsResponse> { return new RequestJson<DiscordWidgetSettingsResponse>(`/guilds/${guildId}/widget`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getGuildWidget(guildId: DiscordSnowflakeType): RequestJson<DiscordWidgetResponse> { return new RequestJson<DiscordWidgetResponse>(`/guilds/${guildId}/widget.json`, RequestMethod.GET); }
+   export function getGuildWidgetPng(guildId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/guilds/${guildId}/widget.png`, RequestMethod.GET); }
+   export function createInteractionResponse(interactionId: DiscordSnowflakeType, interactionToken: string, body: (DiscordApplicationCommandAutocompleteCallbackRequest | DiscordCreateMessageInteractionCallbackRequest | DiscordLaunchActivityInteractionCallbackRequest | DiscordModalInteractionCallbackRequest | DiscordPongInteractionCallbackRequest | DiscordUpdateMessageInteractionCallbackRequest)): RequestJson<DiscordInteractionCallbackResponse> { return new RequestJson<DiscordInteractionCallbackResponse>(`/interactions/${interactionId}/${interactionToken}/callback`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function inviteResolve(code: string): RequestJson<(DiscordFriendInviteResponse | DiscordGroupDMInviteResponse | DiscordGuildInviteResponse)> { return new RequestJson<(DiscordFriendInviteResponse | DiscordGroupDMInviteResponse | DiscordGuildInviteResponse)>(`/invites/${code}`, RequestMethod.GET); }
+   export function inviteRevoke(code: string): RequestJson<(DiscordFriendInviteResponse | DiscordGroupDMInviteResponse | DiscordGuildInviteResponse)> { return new RequestJson<(DiscordFriendInviteResponse | DiscordGroupDMInviteResponse | DiscordGuildInviteResponse)>(`/invites/${code}`, RequestMethod.DELETE); }
+   export function createOrJoinLobby(body: {idle_timeout_seconds?: number | null, lobby_metadata?: object | null, member_metadata?: object | null, secret: string}): RequestJson<DiscordLobbyResponse> { return new RequestJson<DiscordLobbyResponse>("/lobbies", RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function createLobby(body: {idle_timeout_seconds?: number | null, members?: DiscordLobbyMemberRequest[] | null, metadata?: object | null}): RequestJson<DiscordLobbyResponse> { return new RequestJson<DiscordLobbyResponse>("/lobbies", RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getLobby(lobbyId: DiscordSnowflakeType): RequestJson<DiscordLobbyResponse> { return new RequestJson<DiscordLobbyResponse>(`/lobbies/${lobbyId}`, RequestMethod.GET); }
+   export function editLobby(lobbyId: DiscordSnowflakeType, body: {idle_timeout_seconds?: number | null, metadata?: object | null, members?: DiscordLobbyMemberRequest[] | null}): RequestJson<DiscordLobbyResponse> { return new RequestJson<DiscordLobbyResponse>(`/lobbies/${lobbyId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function editLobbyChannelLink(lobbyId: DiscordSnowflakeType, body: {channel_id?: (null | DiscordSnowflakeType)}): RequestJson<DiscordLobbyResponse> { return new RequestJson<DiscordLobbyResponse>(`/lobbies/${lobbyId}/channel-linking`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function leaveLobby(lobbyId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/lobbies/${lobbyId}/members/@me`, RequestMethod.DELETE); }
+   export function addLobbyMember(lobbyId: DiscordSnowflakeType, userId: DiscordSnowflakeType, body: {metadata?: object | null, flags?: (null | number)}): RequestJson<DiscordLobbyMemberResponse> { return new RequestJson<DiscordLobbyMemberResponse>(`/lobbies/${lobbyId}/members/${userId}`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function deleteLobbyMember(lobbyId: DiscordSnowflakeType, userId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/lobbies/${lobbyId}/members/${userId}`, RequestMethod.DELETE); }
+   export function createLobbyMessage(lobbyId: DiscordSnowflakeType, body: DiscordSDKMessageRequest): RequestJson<DiscordLobbyMessageResponse> { return new RequestJson<DiscordLobbyMessageResponse>(`/lobbies/${lobbyId}/messages`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getMyOauth2Authorization(): RequestJson<DiscordOAuth2GetAuthorizationResponse> { return new RequestJson<DiscordOAuth2GetAuthorizationResponse>("/oauth2/@me", RequestMethod.GET); }
+   export function getMyOauth2Application(): RequestJson<DiscordPrivateApplicationResponse> { return new RequestJson<DiscordPrivateApplicationResponse>("/oauth2/applications/@me", RequestMethod.GET); }
+   export function getPublicKeys(): RequestJson<DiscordOAuth2GetKeys> { return new RequestJson<DiscordOAuth2GetKeys>("/oauth2/keys", RequestMethod.GET); }
+   export function getOpenidConnectUserinfo(): RequestJson<DiscordOAuth2GetOpenIDConnectUserInfoResponse> { return new RequestJson<DiscordOAuth2GetOpenIDConnectUserInfoResponse>("/oauth2/userinfo", RequestMethod.GET); }
+   export function partnerSdkUnmergeProvisionalAccount(body: {client_id: DiscordSnowflakeType, client_secret?: string | null, external_auth_token: string, external_auth_type: DiscordApplicationIdentityProviderAuthType}): RequestJson<void> { return new RequestJson<void>("/partner-sdk/provisional-accounts/unmerge", RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function partnerSdkToken(body: {client_id: DiscordSnowflakeType, client_secret?: string | null, external_auth_token: string, external_auth_type: DiscordApplicationIdentityProviderAuthType}): RequestJson<DiscordProvisionalTokenResponse> { return new RequestJson<DiscordProvisionalTokenResponse>("/partner-sdk/token", RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getSoundboardDefaultSounds(): RequestJson<DiscordSoundboardSoundResponse[]> { return new RequestJson<DiscordSoundboardSoundResponse[]>("/soundboard-default-sounds", RequestMethod.GET); }
+   export function createStageInstance(body: {topic: string, channel_id: DiscordSnowflakeType, privacy_level?: (null | DiscordStageInstancesPrivacyLevels), guild_scheduled_event_id?: (null | DiscordSnowflakeType), send_start_notification?: boolean | null}): RequestJson<DiscordStageInstanceResponse> { return new RequestJson<DiscordStageInstanceResponse>("/stage-instances", RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getStageInstance(channelId: DiscordSnowflakeType): RequestJson<DiscordStageInstanceResponse> { return new RequestJson<DiscordStageInstanceResponse>(`/stage-instances/${channelId}`, RequestMethod.GET); }
+   export function deleteStageInstance(channelId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/stage-instances/${channelId}`, RequestMethod.DELETE); }
+   export function updateStageInstance(channelId: DiscordSnowflakeType, body: {topic?: string, privacy_level?: DiscordStageInstancesPrivacyLevels}): RequestJson<DiscordStageInstanceResponse> { return new RequestJson<DiscordStageInstanceResponse>(`/stage-instances/${channelId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function listStickerPacks(): RequestJson<DiscordStickerPackCollectionResponse> { return new RequestJson<DiscordStickerPackCollectionResponse>("/sticker-packs", RequestMethod.GET); }
+   export function getStickerPack(packId: DiscordSnowflakeType): RequestJson<DiscordStickerPackResponse> { return new RequestJson<DiscordStickerPackResponse>(`/sticker-packs/${packId}`, RequestMethod.GET); }
+   export function getSticker(stickerId: DiscordSnowflakeType): RequestJson<(DiscordGuildStickerResponse | DiscordStandardStickerResponse)> { return new RequestJson<(DiscordGuildStickerResponse | DiscordStandardStickerResponse)>(`/stickers/${stickerId}`, RequestMethod.GET); }
+   export function getMyUser(): RequestJson<DiscordUserPIIResponse> { return new RequestJson<DiscordUserPIIResponse>("/users/@me", RequestMethod.GET); }
+   export function updateMyUser(body: DiscordBotAccountPatchRequest): RequestJson<DiscordUserPIIResponse> { return new RequestJson<DiscordUserPIIResponse>("/users/@me", RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getApplicationUserRoleConnection(applicationId: DiscordSnowflakeType): RequestJson<DiscordApplicationUserRoleConnectionResponse> { return new RequestJson<DiscordApplicationUserRoleConnectionResponse>(`/users/@me/applications/${applicationId}/role-connection`, RequestMethod.GET); }
+   export function updateApplicationUserRoleConnection(applicationId: DiscordSnowflakeType, body: {platform_name?: string | null, platform_username?: string | null, metadata?: object | null}): RequestJson<DiscordApplicationUserRoleConnectionResponse> { return new RequestJson<DiscordApplicationUserRoleConnectionResponse>(`/users/@me/applications/${applicationId}/role-connection`, RequestMethod.PUT).setBody(stringify(body), "application/json"); }
+   export function deleteApplicationUserRoleConnection(applicationId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/users/@me/applications/${applicationId}/role-connection`, RequestMethod.DELETE); }
+   export function createDm(body: DiscordCreatePrivateChannelRequest): RequestJson<(DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse)> { return new RequestJson<(DiscordPrivateChannelResponse | DiscordPrivateGroupChannelResponse)>("/users/@me/channels", RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function listMyConnections(): RequestJson<DiscordConnectedAccountResponse[] | null> { return new RequestJson<DiscordConnectedAccountResponse[] | null>("/users/@me/connections", RequestMethod.GET); }
+   export function listMyGuilds(): RequestJson<DiscordMyGuildResponse[] | null> { return new RequestJson<DiscordMyGuildResponse[] | null>("/users/@me/guilds", RequestMethod.GET); }
+   export function leaveGuild(guildId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/users/@me/guilds/${guildId}`, RequestMethod.DELETE); }
+   export function getMyGuildMember(guildId: DiscordSnowflakeType): RequestJson<DiscordPrivateGuildMemberResponse> { return new RequestJson<DiscordPrivateGuildMemberResponse>(`/users/@me/guilds/${guildId}/member`, RequestMethod.GET); }
+   export function getUser(userId: DiscordSnowflakeType): RequestJson<DiscordUserResponse> { return new RequestJson<DiscordUserResponse>(`/users/${userId}`, RequestMethod.GET); }
+   export function listVoiceRegions(): RequestJson<DiscordVoiceRegionResponse[] | null> { return new RequestJson<DiscordVoiceRegionResponse[] | null>("/voice/regions", RequestMethod.GET); }
+   export function getWebhook(webhookId: DiscordSnowflakeType): RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)> { return new RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)>(`/webhooks/${webhookId}`, RequestMethod.GET); }
+   export function deleteWebhook(webhookId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/webhooks/${webhookId}`, RequestMethod.DELETE); }
+   export function updateWebhook(webhookId: DiscordSnowflakeType, body: {name?: string, avatar?: string | null, channel_id?: (null | DiscordSnowflakeType)}): RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)> { return new RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)>(`/webhooks/${webhookId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getWebhookByToken(webhookId: DiscordSnowflakeType, webhookToken: string): RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)> { return new RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)>(`/webhooks/${webhookId}/${webhookToken}`, RequestMethod.GET); }
+   export function executeWebhook(webhookId: DiscordSnowflakeType, webhookToken: string, body: (DiscordIncomingWebhookRequestPartial | DiscordIncomingWebhookUpdateRequestPartial)): RequestJson<DiscordMessageResponse> { return new RequestJson<DiscordMessageResponse>(`/webhooks/${webhookId}/${webhookToken}`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function deleteWebhookByToken(webhookId: DiscordSnowflakeType, webhookToken: string): RequestJson<void> { return new RequestJson<void>(`/webhooks/${webhookId}/${webhookToken}`, RequestMethod.DELETE); }
+   export function updateWebhookByToken(webhookId: DiscordSnowflakeType, webhookToken: string, body: {name?: string, avatar?: string | null}): RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)> { return new RequestJson<(DiscordApplicationIncomingWebhookResponse | DiscordChannelFollowerWebhookResponse | DiscordGuildIncomingWebhookResponse)>(`/webhooks/${webhookId}/${webhookToken}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function executeGithubCompatibleWebhook(webhookId: DiscordSnowflakeType, webhookToken: string, body: DiscordGithubWebhook): RequestJson<void> { return new RequestJson<void>(`/webhooks/${webhookId}/${webhookToken}/github`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+   export function getOriginalWebhookMessage(webhookId: DiscordSnowflakeType, webhookToken: string): RequestJson<DiscordMessageResponse> { return new RequestJson<DiscordMessageResponse>(`/webhooks/${webhookId}/${webhookToken}/messages/@original`, RequestMethod.GET); }
+   export function deleteOriginalWebhookMessage(webhookId: DiscordSnowflakeType, webhookToken: string): RequestJson<void> { return new RequestJson<void>(`/webhooks/${webhookId}/${webhookToken}/messages/@original`, RequestMethod.DELETE); }
+   export function updateOriginalWebhookMessage(webhookId: DiscordSnowflakeType, webhookToken: string, body: DiscordIncomingWebhookUpdateRequestPartial): RequestJson<DiscordMessageResponse> { return new RequestJson<DiscordMessageResponse>(`/webhooks/${webhookId}/${webhookToken}/messages/@original`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function getWebhookMessage(webhookId: DiscordSnowflakeType, webhookToken: string, messageId: DiscordSnowflakeType): RequestJson<DiscordMessageResponse> { return new RequestJson<DiscordMessageResponse>(`/webhooks/${webhookId}/${webhookToken}/messages/${messageId}`, RequestMethod.GET); }
+   export function deleteWebhookMessage(webhookId: DiscordSnowflakeType, webhookToken: string, messageId: DiscordSnowflakeType): RequestJson<void> { return new RequestJson<void>(`/webhooks/${webhookId}/${webhookToken}/messages/${messageId}`, RequestMethod.DELETE); }
+   export function updateWebhookMessage(webhookId: DiscordSnowflakeType, webhookToken: string, messageId: DiscordSnowflakeType, body: DiscordIncomingWebhookUpdateRequestPartial): RequestJson<DiscordMessageResponse> { return new RequestJson<DiscordMessageResponse>(`/webhooks/${webhookId}/${webhookToken}/messages/${messageId}`, RequestMethod.PATCH).setBody(stringify(body), "application/json"); }
+   export function executeSlackCompatibleWebhook(webhookId: DiscordSnowflakeType, webhookToken: string, body: DiscordSlackWebhook): RequestJson<string | null> { return new RequestJson<string | null>(`/webhooks/${webhookId}/${webhookToken}/slack`, RequestMethod.POST).setBody(stringify(body), "application/json"); }
+
+}

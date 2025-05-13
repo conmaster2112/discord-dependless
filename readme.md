@@ -77,6 +77,13 @@ Expects all snowflake types as number strings, following Discord's Rest API
 - Improve event typing.
 - Additional utility functions to enhance Discord interactions
 
+## Changes
+ - `10.0.0-alpha-4` 
+   - Added exported namespace `JsonAPI` for All JSON Rest API function builders
+   - Improved DiscordAPIError Instance with improved experimental formatting
+   - Made Bot class instance to use `JsonAPI` under the hood and added setApplicationCommands method
+
+
 ## Contribution
 
 Contributions are always welcome! Whether you want to improve the package, optimize code, or suggest features, you can contribute in two ways:
@@ -85,3 +92,4 @@ Contributions are always welcome! Whether you want to improve the package, optim
 - **Issue Reporting** – If you encounter bugs or have suggestions, feel free to open an issue.
 
 Your feedback helps make `discord-dependless` better. 🚀
+

@@ -1,6 +1,7 @@
+import { InitRequestLike } from "../api-like";
 import { HeaderType, RequestMethod } from "../enums";
 
-export class RequestInitInfo{
+export class RequestInitInfo implements InitRequestLike{
     public headers: Record<string, string | number>;
     public body?: unknown;
     public constructor(

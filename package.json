@@ -1,13 +1,13 @@
 {
   "name": "discord-dependless",
-  "version": "10.0.0",
-  "main": "./dist/index.js",
+  "version": "10.0.0-alpha.4",
+  "main": "./dist/main.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "description": "A lightweight Discord API wrapper designed for simplicity and zero active dependencies. Unlike traditional libraries, **discord-dependless** allows sending messages persistent connection and gateway events are optional.",
   "scripts": {
     "build": "rolldown -c && node ./dist/build.js && tsdown -c ./tsdown.config.ts",
-    "test": "pnpm run build && node ./dist/test.js"
+    "test": "rolldown -c && tsdown -c ./tsdown.config.ts && node ./dist/test.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/conmaster2112/discord-dependless#readme",
   "files": [
-    "./dist/index.js",
+    "./dist/main.js",
     "./dist/index.d.ts",
     "package.json",
     "README.md"

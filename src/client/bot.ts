@@ -1,13 +1,18 @@
-import { REST_API_ENDPOINT } from "../constants";
-import { DiscordAPIError } from "../discord-error";
-import { ContentTypes, HeaderType, RequestMethod } from "../enums";
-import type { DiscordMessageCreateRequest, DiscordSnowflakeType, DiscordRestAPIPath, DiscordMessageResponse } from "../rest-api-types";
-import { ErrorResult, Result } from "../result";
+import { FetchLike } from "../api-like";
+import { HeaderType } from "../enums";
+import { RequestJson } from "../request";
+import type { 
+    DiscordMessageCreateRequest, 
+    DiscordSnowflakeType, DiscordCreatedThreadResponse, DiscordCreateForumThreadRequest, 
+    DiscordMessageResponse, DiscordCreateTextThreadWithoutMessageRequest, DiscordApplicationCommandResponse,
+    DiscordApplicationCommandUpdateRequest
+} from "../rest-api-types";
+import { JsonAPI } from "../rest-api-types";
+import { Result } from "../result";
 import { GateWay } from "./gateway";
-import { RequestInitInfo } from "./init";
 
 export class Bot {
-    public static fetch: typeof globalThis.fetch = globalThis.fetch;
+    public static fetch: FetchLike = globalThis.fetch as FetchLike;
     public readonly baseHeaders: Record<string, string | number>;
     public readonly token: string;
     protected gateway: GateWay | null;
@@ -16,10 +21,6 @@ export class Bot {
         this.baseHeaders = {};
         this.baseHeaders[HeaderType.Authorization] = `Bot ${this.token}`;
     }
-    public setUserAgent(userAgent: string){
-        this.baseHeaders[HeaderType.UserAgent] = userAgent;
-        return this;
-    }
     public async connect(intentBits: number): Promise<GateWay>{
         if(this.gateway) 
             throw new ReferenceError("Gateway already initialized");
@@ -27,40 +28,20 @@ export class Bot {
         const gateway = this.gateway = new GateWay();
         return gateway.connect(this.token, intentBits);
     }
+    public async postMessage(forumChannelId: DiscordSnowflakeType, message: DiscordCreateForumThreadRequest | DiscordCreateTextThreadWithoutMessageRequest): Promise<Result<DiscordCreatedThreadResponse>>{
+        return this._(JsonAPI.createThread(forumChannelId, message));
+    }
     public async sendMessage(channelId: DiscordSnowflakeType, message: DiscordMessageCreateRequest): Promise<Result<DiscordMessageResponse>> {
-        return await this.requestJson<DiscordMessageResponse>(
-            `/channels/${channelId}/messages`, 
-            this.newRequest(RequestMethod.POST)
-            .setBody(JSON.stringify(message), ContentTypes.Json)
-        );
+        return this._(JsonAPI.createMessage(channelId, message));
     }
-    protected async requestJson<T>(path: DiscordRestAPIPath, init: RequestInitInfo): Promise<Result<T>>{
-        const response = await this.api(path, init);
-
-        // Is not valid
-        if(!response.isValid()) return response as any;
-
-        return await Result.wrap<T>(response.data.json());
+    public async pinMessage(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType): Promise<Result<void>> {
+        return this._(JsonAPI.pinMessage(channelId, messageId));
     }
-    protected async api(path: DiscordRestAPIPath, init: RequestInitInfo): Promise<Result<Response>> {
-        if(!init.headers) init.headers = this.baseHeaders as any;
-        const value = await Result.wrap(Bot.fetch(REST_API_ENDPOINT + path, init as any));
-
-        // Return immediately
-        if(!value.isValid()) return value;
-
-        // Return immediately
-        if(value.data.ok) return value;
-
-        return new ErrorResult(new DiscordAPIError(path, init.method??"GET", value.data)) as any;
+    public async setApplicationCommands(applicationId: DiscordSnowflakeType, commands: DiscordApplicationCommandUpdateRequest[] | null): Promise<Result<DiscordApplicationCommandResponse[] | null>>{
+        return this._(JsonAPI.bulkSetApplicationCommands(applicationId, commands))
     }
-    protected newRequest(method: RequestMethod): RequestInitInfo{
-        const info = new RequestInitInfo(method);
-
-        // Assign data
-        Object.assign(info.headers, this.baseHeaders);
-
-        // Return value
-        return info;
-    }
+    /**
+     * @internal
+     */
+    public async _<T>(request: RequestJson<T>): Promise<Result<T>>{ return request.fetch(Bot.fetch, this.baseHeaders); }
 }
