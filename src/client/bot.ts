@@ -12,7 +12,7 @@ import { Result } from "../result";
 import { GateWay } from "./gateway";
 
 export class Bot {
-    public static fetch: FetchLike = globalThis.fetch as FetchLike;
+    public static fetch: FetchLike = globalThis.fetch as unknown as FetchLike;
     public readonly baseHeaders: Record<string, string | number>;
     public readonly token: string;
     protected gateway: GateWay | null;
@@ -35,7 +35,7 @@ export class Bot {
         return this._(JsonAPI.createMessage(channelId, message));
     }
     public async pinMessage(channelId: DiscordSnowflakeType, messageId: DiscordSnowflakeType): Promise<Result<void>> {
-        return this._(JsonAPI.pinMessage(channelId, messageId));
+        return this._(JsonAPI.deprecatedCreatePin(channelId, messageId));
     }
     public async setApplicationCommands(applicationId: DiscordSnowflakeType, commands: DiscordApplicationCommandUpdateRequest[] | null): Promise<Result<DiscordApplicationCommandResponse[] | null>>{
         return this._(JsonAPI.bulkSetApplicationCommands(applicationId, commands))

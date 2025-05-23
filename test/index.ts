@@ -1,9 +1,17 @@
 import { Bot, DiscordAPIError, DiscordSnowflakeType, Result } from "discord-dependless";
 import { token, forum, applicationId } from "./.init.json" with {type: "json"};
 
+const {log, error} = console;
 // Init
 const bot = new Bot({ token: token });
 
+const gateway = await bot.connect(32768 | 512 | 1024);
+gateway.addEventListener("MESSAGE_CREATE", e=>{
+    log(e.data.author.username, e.data.content);
+});
+gateway.addEventListener("INTERACTION_CREATE", async (e)=>{
+    log(e.data);
+});
 let test1 = await bot.setApplicationCommands(applicationId as DiscordSnowflakeType, [
     {
         name: "test",
@@ -99,7 +107,9 @@ result = await bot.postMessage(forum as DiscordSnowflakeType, {
 });
 
 if (result.isError() && (result.error instanceof DiscordAPIError)) {
-    console.error(JSON.stringify(await result.error.response.json(), null, 2));
+    error(JSON.stringify(await result.error.response.json(), null, 2));
 }
 
-console.log("So far so good");
+log("So far so good");
+
+setTimeout(()=>gateway.disconnect(), 20*1000);

@@ -1,6 +1,6 @@
 {
   "name": "discord-dependless",
-  "version": "10.0.0-alpha.4",
+  "version": "10.0.0-alpha.5",
   "main": "./dist/main.js",
   "types": "dist/index.d.ts",
   "type": "module",

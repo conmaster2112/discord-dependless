@@ -1,6 +1,7 @@
 import { WSS_GATEWAY_ENDPOINT } from "../constants";
 import { DiscordGatewayOpCode } from "../enums";
-import type { DiscordMessageResponse, DiscordSnowflakeType, DiscordUserResponse, DiscordGatewayEventNames, DiscordGatewayPayload } from "../rest-api-types";
+import type { DiscordMessageResponse, DiscordGatewayEventNames, DiscordGatewayPayload } from "../rest-api-types";
+import { GateWayInteractionCreateEvent, GatewayReadyEvent } from "./gateway.events";
 //import { writeFile } from "node:fs/promises";
 
 const ERROR_EVENT_NAME: "error" = "error" as const;
@@ -83,28 +84,9 @@ export interface GateWay {
 }
 export type GatewayEventMap = {
     MESSAGE_CREATE: MessageEvent<DiscordMessageResponse>;
+    READY: MessageEvent<GatewayReadyEvent>;
+    INTERACTION_CREATE: MessageEvent<GateWayInteractionCreateEvent>;
     error: ErrorEvent; 
 } & {
     [K in DiscordGatewayEventNames]: MessageEvent<unknown>;
-}
-
-export interface GateWayBotReady {
-    "v": number,
-    "user_settings": object,
-    "user": DiscordUserResponse
-    "session_type": string,
-    "session_id": string,
-    "resume_gateway_url": string,
-    "relationships": unknown[],
-    "private_channels": unknown[],
-    "presences": unknown[],
-    "guilds": {unavailable: boolean, id: DiscordSnowflakeType}[],
-    "guild_join_requests": unknown[],
-    "geo_ordered_rtc_regions": string[],
-    "game_relationships": unknown[],
-    "auth": object,
-    "application": {
-       "id": DiscordSnowflakeType,
-       "flags": number
-    }
 }

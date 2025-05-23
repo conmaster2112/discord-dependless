@@ -78,6 +78,10 @@ Expects all snowflake types as number strings, following Discord's Rest API
 - Additional utility functions to enhance Discord interactions
 
 ## Changes
+ - `10.0.0-alpha-5` 
+   - Add More Gateway Events
+     - Types for Ready Event
+     - Types for InteractionCreate Event
  - `10.0.0-alpha-4` 
    - Added exported namespace `JsonAPI` for All JSON Rest API function builders
    - Improved DiscordAPIError Instance with improved experimental formatting

@@ -1,4 +1,4 @@
-import { createWriteStream } from "node:fs";
+import { createWriteStream, writeFileSync } from "node:fs";
 import process, { exit } from "node:process";
 import {declarationTypes} from "./declarations";
 import "./types";
@@ -21,6 +21,8 @@ async function main(): Promise<number>{
         error("Failed to parse json response")
         return 1;
     }
+
+    writeFileSync(`./data/open.aip.${API_DATA.info.version}.json`, JSON.stringify(API_DATA, null, 2));
 
     const typeHandle = createWriteStream(TYPES_FILE_NAME);
     typeHandle.write(`
