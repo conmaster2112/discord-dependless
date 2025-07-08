@@ -185,7 +185,7 @@ export function getTypeFromType(data: any): string {
     return getType(data)!;
 }
 function getType(e: any): string | undefined {
-    return TYPE_MAPPER[e.type] ?? e.type;
+    return TYPE_MAPPER[e.type as "float"] ?? e.type;
 }
 export function getName(e: string): string {
     return `Discord${e}`;

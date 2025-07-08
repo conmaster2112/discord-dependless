@@ -15,7 +15,7 @@ export class Bot {
     public static fetch: FetchLike = globalThis.fetch as unknown as FetchLike;
     public readonly baseHeaders: Record<string, string | number>;
     public readonly token: string;
-    protected gateway: GateWay | null;
+    protected gateway: GateWay | null = null;
     public constructor(options: {token: string}){
         this.token = options.token;
         this.baseHeaders = {};

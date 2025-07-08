@@ -1,35 +1,21 @@
+import {dts} from "rolldown-plugin-dts";
 import { RolldownOptions} from "rolldown";
-import { devDependencies, main } from "./package.json"
+import { devDependencies } from "./package.json"
 
 const external = new RegExp(`^(${Object.getOwnPropertyNames(devDependencies).join("|")}|node:)`)
 
 export default [
     {
         external,
-        input: "build/index.ts",
-        platform: "node",
+        input: {
+            main:"src/index.ts"
+        },
+        plugins: [dts({isolatedDeclarations: true})],
         output: {
-            file: "dist/build.js"
-        }
-    },
-    {
-        external,
-        input: "src/index.ts",
-        platform: "node",
-        output: {
-            file: main,
+            dir: "dist",
             esModule: true,
-            minify: true,
         },
         treeshake: true,
         keepNames: true
-    },
-    {
-        external,
-        input: "test/index.ts",
-        platform: "node",
-        output: {
-            file: "dist/test.js"
-        }
     }
 ] satisfies RolldownOptions[];

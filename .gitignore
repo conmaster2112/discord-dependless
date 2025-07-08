@@ -1,6 +1,5 @@
 dist
 node_modules
-data
 EVENTS
 .data.txt
 test/.*.json

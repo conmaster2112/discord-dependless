@@ -39,12 +39,12 @@ export class GateWay extends EventTarget {
     }
     protected onPayload(data: DiscordGatewayPayload): void{
         const {op} = data;
-        if(typeof this[op] !== "function") 
+        if(typeof this[op as 0] !== "function") 
             return void this.report(new TypeError("Unknown op code: " + op));
 
         this[op as 10](data).catch(e=>this.report(e));
     }
-    protected async [DiscordGatewayOpCode.Dispatch](data: DiscordGatewayPayload): Promise<void>{
+    protected async [0 /*DiscordGatewayOpCode.Dispatch*/](data: DiscordGatewayPayload): Promise<void>{
         if(!data.t)
             return void this.report(new TypeError("Dispatch with no event name."));
 
@@ -52,7 +52,7 @@ export class GateWay extends EventTarget {
         
         this.dispatchEvent(new MessageEvent(data.t!, {data: data.d}));
     }
-    protected async [DiscordGatewayOpCode.Hello](data: DiscordGatewayPayload): Promise<void>{
+    protected async [10/*DiscordGatewayOpCode.Hello*/](data: DiscordGatewayPayload): Promise<void>{
         // clear old heart beat
         if(this.heartbeat) this.heartbeat = void clearInterval(this.heartbeat);
 
