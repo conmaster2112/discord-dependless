@@ -6,7 +6,7 @@ import { generateFunctions } from "./types";
 const {log, error} = globalThis.console;
 const API_DATA_KIND = "https://github.com/discord/discord-api-spec/raw/refs/heads/main/specs/openapi.json";
 const TYPES_FILE_NAME = "./src/rest-api-types.ts";
-const METHOD_FILE_NAME = "./src/json-rest-api-methods.ts";
+const _METHOD_FILE_NAME = "./src/json-rest-api-methods.ts";
 async function main(): Promise<number>{
     const INIT_TIME = performance.now();
     const response = await fetch(API_DATA_KIND).catch(()=>null);

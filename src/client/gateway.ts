@@ -5,12 +5,20 @@ import { GateWayInteractionCreateEvent, GatewayReadyEvent } from "./gateway.even
 //import { writeFile } from "node:fs/promises";
 
 const ERROR_EVENT_NAME: "error" = "error" as const;
+const ErrorEvent: new (eventName: string, eventInit: EventInit & {error: Error | DOMException})=>Event = globalThis.ErrorEvent??class ErrorEvent extends Event {
+    public readonly error: Error | DOMException;
+    public constructor(eventName: string, eventInit: EventInit & {error: Error | DOMException}){
+        super(eventName, eventInit);
+        this.error = eventInit.error;
+    }
+};
 
 // eslint-disable-next-line no-unsafe-declaration-merging
 export class GateWay extends EventTarget {
     public static readonly WebSocketConstructor?: new (link: string)=> WebSocket = globalThis.WebSocket;
     public socket?: WebSocket;
     public heartbeat?: ReturnType<typeof setInterval>;
+    protected currentHeartbeatEventSequenceId: number | null = null;
     public connect(token: string, intentBits: number): this{
         if(!GateWay.WebSocketConstructor)
             throw new ReferenceError("Web Socket APIs are not available");
@@ -18,13 +26,13 @@ export class GateWay extends EventTarget {
         // Initialize websocket
         const socket = this.socket = new GateWay.WebSocketConstructor(WSS_GATEWAY_ENDPOINT);
         socket.addEventListener("open", ()=>this.onOpen(token, intentBits));
-        socket.addEventListener("error", error=>this.report(error));
+        socket.addEventListener("error", error=>this.report(error as unknown as Error));
         socket.addEventListener("message", (event)=>this.onPayload(JSON.parse(event.data)));
         socket.addEventListener("close",()=>this.disconnect());
         return this;
     }
-    protected report(error: unknown): void{
-        this.dispatchEvent(new ErrorEvent(ERROR_EVENT_NAME, {error}));
+    protected report(error: Error): void{
+        this.dispatchEvent(new ErrorEvent(ERROR_EVENT_NAME, {error: error as Error}));
     }
     protected async onOpen(token: string, intentBits: number): Promise<void>{
         await this.answer(DiscordGatewayOpCode.Identify, {
@@ -38,7 +46,9 @@ export class GateWay extends EventTarget {
         }).catch(e=>this.report(e));
     }
     protected onPayload(data: DiscordGatewayPayload): void{
-        const {op} = data;
+        const {op, s} = data;
+        if(typeof s === "number")
+            this.currentHeartbeatEventSequenceId = s;
         if(typeof this[op as 0] !== "function") 
             return void this.report(new TypeError("Unknown op code: " + op));
 
@@ -52,6 +62,7 @@ export class GateWay extends EventTarget {
         
         this.dispatchEvent(new MessageEvent(data.t!, {data: data.d}));
     }
+    protected async [11/*DiscordGatewayOpCode.HeartbeatAck*/](_: DiscordGatewayPayload): Promise<void>{}
     protected async [10/*DiscordGatewayOpCode.Hello*/](data: DiscordGatewayPayload): Promise<void>{
         // clear old heart beat
         if(this.heartbeat) this.heartbeat = void clearInterval(this.heartbeat);
@@ -61,7 +72,7 @@ export class GateWay extends EventTarget {
         if(typeof heartbeat_interval !== "number") 
             throw TypeError("Invalid payload received for Hello op code");
 
-        this.heartbeat = setInterval(()=>{}, heartbeat_interval);
+        this.heartbeat = setInterval(()=>void this.answer(DiscordGatewayOpCode.Heartbeat, this.currentHeartbeatEventSequenceId), heartbeat_interval);
         this.heartbeat.unref?.();
     }
 
@@ -73,7 +84,7 @@ export class GateWay extends EventTarget {
         if(this.socket) this.socket.close();
     }
     protected async answer(opcode: DiscordGatewayOpCode, data: any): Promise<void> {
-        this.socket?.send(JSON.stringify({op: opcode, d: data}));
+        return void this.socket?.send(JSON.stringify({op: opcode, d: data}));
     }
 }
 export interface GateWay {

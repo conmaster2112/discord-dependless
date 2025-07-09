@@ -1,24 +1,28 @@
-import { Bot, DiscordAPIError, DiscordSnowflakeType, Result } from "discord-dependless";
-import { token, forum, applicationId } from "./.init.json" with {type: "json"};
+import { Bot, DiscordAPIError, type DiscordSnowflakeType, Result } from "discord-dependless";
+import data from "./.init.json" with {type: "json"};
 
-const {log, error} = console;
+const { log, error } = console;
 // Init
-const bot = new Bot({ token: token });
+const bot = new Bot({ token: data.token });
 
 const gateway = await bot.connect(32768 | 512 | 1024);
-gateway.addEventListener("MESSAGE_CREATE", e=>{
+gateway.addEventListener("MESSAGE_CREATE", e => {
     log(e.data.author.username, e.data.content);
 });
-gateway.addEventListener("INTERACTION_CREATE", async (e)=>{
+gateway.addEventListener("INTERACTION_CREATE", async (e) => {
     log(e.data);
 });
-let test1 = await bot.setApplicationCommands(applicationId as DiscordSnowflakeType, [
-    {
-        name: "test",
-        description: "Is Required"
-    }
-]);
-test1.unwrap();
+gateway.addEventListener("READY", async (e) => {
+    const applicationId = e.data.application.id;
+
+    let test1 = await bot.setApplicationCommands(applicationId as DiscordSnowflakeType, [
+        {
+            name: "test",
+            description: "Is Required"
+        }
+    ]);
+    test1.unwrap();
+});
 
 // Send first message
 let result: Result<any> = await null!; /*bot.sendMessage(channel as DiscordSnowflakeType, {
@@ -27,14 +31,14 @@ let result: Result<any> = await null!; /*bot.sendMessage(channel as DiscordSnowf
 
 // Reply
 //const { id: message_id } = result.unwrap();
-result = await bot.postMessage(forum as DiscordSnowflakeType, {
+result = await bot.postMessage(data.forumId as DiscordSnowflakeType, {
     name: "Discord - Forum Test - Bot",
     message: {
         "flags": 32768,
         components: [
             {
                 type: 10,
-                content:"https://cdn.discordapp.com/attachments/965404512187740220/1368211839166582976/image.png?ex=68176612&is=68161492&hm=94d9e80f2adb900105cc9129806f899c40354d3f0c014aa21a856ef76e6a61c4&",
+                content: "https://cdn.discordapp.com/attachments/965404512187740220/1368211839166582976/image.png?ex=68176612&is=68161492&hm=94d9e80f2adb900105cc9129806f899c40354d3f0c014aa21a856ef76e6a61c4&",
             },
             {
                 type: 17,
@@ -44,7 +48,7 @@ result = await bot.postMessage(forum as DiscordSnowflakeType, {
                         items: [
                             {
                                 media: {
-                                    url:"https://cdn.discordapp.com/attachments/965404512187740220/1368211839166582976/image.png?ex=68176612&is=68161492&hm=94d9e80f2adb900105cc9129806f899c40354d3f0c014aa21a856ef76e6a61c4&"
+                                    url: "https://cdn.discordapp.com/attachments/965404512187740220/1368211839166582976/image.png?ex=68176612&is=68161492&hm=94d9e80f2adb900105cc9129806f899c40354d3f0c014aa21a856ef76e6a61c4&"
                                 }
                             }
                         ]
@@ -97,7 +101,7 @@ result = await bot.postMessage(forum as DiscordSnowflakeType, {
                         type: 14
                     },
                     {
-                        type:10,
+                        type: 10,
                         content: "-# Well this is complicated   •   Really??"
                     }
                 ]
@@ -111,5 +115,3 @@ if (result.isError() && (result.error instanceof DiscordAPIError)) {
 }
 
 log("So far so good");
-
-setTimeout(()=>gateway.disconnect(), 20*1000);
