@@ -80,7 +80,8 @@ Expects all snowflake types as number strings, following Discord's Rest API
 ## Changes
  - `10.0.0-alpha.6`
    - Fixed Heartbeat connection, results with stronger and more established connection.
- - `10.0.0-alpha.5` 
+   - Improved NodeJS compatibility with simple ErrorEvent implementation fallback.
+ - `10.0.0-alpha.5`
    - Add More Gateway Events
      - Types for Ready Event
      - Types for InteractionCreate Event
