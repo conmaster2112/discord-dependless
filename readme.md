@@ -78,6 +78,8 @@ Expects all snowflake types as number strings, following Discord's Rest API
 - Additional utility functions to enhance Discord interactions
 
 ## Changes
+ - `10.0.0-alpha.7`
+   - Fixed code-gen cursed event name, for gateway events.
  - `10.0.0-alpha.6`
    - Fixed Heartbeat connection, results with stronger and more established connection.
    - Improved NodeJS compatibility with simple ErrorEvent implementation fallback.
