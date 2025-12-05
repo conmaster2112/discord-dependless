@@ -78,6 +78,9 @@ Expects all snowflake types as number strings, following Discord's Rest API
 - Additional utility functions to enhance Discord interactions
 
 ## Changes
+ - `10.0.0-alpha.8`
+   - Updated Rest API endpoints, improved treeshake-ability of the overall code.
+   - Add rate-limiting logic and preventing lost of requests.
  - `10.0.0-alpha.7`
    - Fixed code-gen cursed event name, for gateway events.
  - `10.0.0-alpha.6`

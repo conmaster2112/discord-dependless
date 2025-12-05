@@ -1,4 +1,4 @@
-import { DiscordUserResponse, DiscordSnowflakeType,DiscordMessageResponse, DiscordGuildMemberResponse, DiscordGuildResponse, DiscordGuildChannelResponse } from "../rest-api-types";
+import { DiscordUserResponse, DiscordSnowflakeType,DiscordMessageResponse, DiscordGuildMemberResponse, DiscordGuildResponse, DiscordGuildChannelResponse } from "../rest";
 
 export interface GatewayReadyEvent {
     user_settings: {};

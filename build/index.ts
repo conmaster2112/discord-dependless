@@ -5,8 +5,8 @@ import "./types";
 import { generateFunctions } from "./types";
 const {log, error} = globalThis.console;
 const API_DATA_KIND = "https://github.com/discord/discord-api-spec/raw/refs/heads/main/specs/openapi.json";
-const TYPES_FILE_NAME = "./src/rest-api-types.ts";
-const _METHOD_FILE_NAME = "./src/json-rest-api-methods.ts";
+const TYPES_FILE_NAME = "./src/rest/index.ts";
+//const _METHOD_FILE_NAME = "./src/json-rest-api-methods.ts";
 async function main(): Promise<number>{
     const INIT_TIME = performance.now();
     const response = await fetch(API_DATA_KIND).catch(()=>null);
@@ -26,16 +26,14 @@ async function main(): Promise<number>{
 
     const typeHandle = createWriteStream(TYPES_FILE_NAME);
     typeHandle.write(`
-import { RequestJson } from "./request";
-import { RequestMethod } from "./enums";
+import { RequestJson } from "../request";
+import { RequestMethod } from "../enums";
 `);
     
     for(const chunk of declarationTypes(API_DATA)) typeHandle.write(chunk);
     typeHandle.write("\n");
-    typeHandle.write("const {stringify} = JSON;\nexport namespace JsonAPI {\n")
-    for(const chunk of generateFunctions(API_DATA)) typeHandle.write("   " + chunk);
-    typeHandle.write("\n}")
-
+    typeHandle.write("const {stringify} = JSON;")
+    for(const chunk of generateFunctions(API_DATA)) typeHandle.write(chunk);
     typeHandle.close();
     log(`Done in ${(performance.now() - INIT_TIME).toFixed(0)}ms`);
     return 0;

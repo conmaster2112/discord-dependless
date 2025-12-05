@@ -1,9 +1,36 @@
-import { Bot, DiscordAPIError, type DiscordSnowflakeType, Result } from "discord-dependless";
+import { Bot, DiscordSnowflakeType, Result } from "discord-dependless";
 import data from "./.init.json" with {type: "json"};
 
-const { log, error } = console;
+const channelId: DiscordSnowflakeType = "1139562043867934750";
+const channelId2: DiscordSnowflakeType = "1446507043761553408";
+const { log } = console;
 // Init
 const bot = new Bot({ token: data.token });
+for (let i = 0; i < 1; i++) {
+    let v = await bot.getLocalMessages(channelId, 5);
+
+    for (const message of v.unwrap() ?? []) {
+        const _ = await bot.deleteMessage(channelId, message.id);
+        _.unwrap();
+    }
+}
+
+/*
+console.log(lmaos);
+await bot.rateGuard.getAwaiter();
+await bot.sendMessage(channelId, {content: "-# Deleted " + (lmaos?.length??0) + " messages."});
+for(let i = 0; i < 3; i++){
+    await bot.rateGuard.getAwaiter();
+    const result = await bot.sendMessage(channelId, {content: "Hello testing rate limiting"});
+    const {id} = result.unwrap();
+    messageIds.push(id);
+}
+await bot.rateGuard.getAwaiter();
+await bot.batchDeleteMessage(channelId, messageIds);
+await bot.rateGuard.getAwaiter();
+await bot.sendMessage(channelId, {content: "-# Deleted " + messageIds.length + " messages."});*/
+//const messages = (await bot.getLocalMessages("1029085197184020542", 1)).unwrap()
+//log(messages);
 
 const gateway = await bot.connect(32768 | 512 | 1024);
 gateway.addEventListener("MESSAGE_CREATE", e => {
@@ -15,20 +42,21 @@ gateway.addEventListener("INTERACTION_CREATE", async (e) => {
 gateway.addEventListener("READY", async (e) => {
     const applicationId = e.data.application.id;
 
-    let test1 = await bot.setApplicationCommands(applicationId as DiscordSnowflakeType, [
+    /*let test1 = await bot.setApplicationCommands(applicationId as DiscordSnowflakeType, [
         {
             name: "test",
             description: "Is Required"
         }
     ]);
-    test1.unwrap();
+    test1.unwrap();*/
 });
 
+gateway.disconnect();
 // Send first message
-let result: Result<any> = await null!; /*bot.sendMessage(channel as DiscordSnowflakeType, {
+let result: Result<any> = null!; /*bot.sendMessage(channel as DiscordSnowflakeType, {
     content: "I want a embed please"
 });*/
-
+/*
 // Reply
 //const { id: message_id } = result.unwrap();
 result = await bot.postMessage(data.forumId as DiscordSnowflakeType, {
@@ -109,9 +137,11 @@ result = await bot.postMessage(data.forumId as DiscordSnowflakeType, {
         ]
     }
 });
+*/
 
+/*
 if (result.isError() && (result.error instanceof DiscordAPIError)) {
     error(JSON.stringify(await result.error.response.json(), null, 2));
 }
 
-log("So far so good");
+log("So far so good");*/

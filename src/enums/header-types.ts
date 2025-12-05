@@ -1,5 +1,5 @@
 export enum HeaderType {
-    ContentType = "Content-Type",
-    Authorization = "Authorization",
-    UserAgent = "User-Agent"
+    ContentType = "content-type",
+    Authorization = "authorization",
+    UserAgent = "user-agent"
 }

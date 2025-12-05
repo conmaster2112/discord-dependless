@@ -1,6 +1,6 @@
 import { WSS_GATEWAY_ENDPOINT } from "../constants";
 import { DiscordGatewayOpCode } from "../enums";
-import type { DiscordMessageResponse, DiscordGatewayEventNames, DiscordGatewayPayload } from "../rest-api-types";
+import type { DiscordMessageResponse, DiscordGatewayEventNames, DiscordGatewayPayload } from "../rest";
 import { GateWayInteractionCreateEvent, GatewayReadyEvent } from "./gateway.events";
 //import { writeFile } from "node:fs/promises";
 

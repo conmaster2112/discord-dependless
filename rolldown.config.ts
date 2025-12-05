@@ -1,5 +1,5 @@
-import {dts} from "rolldown-plugin-dts";
-import { RolldownOptions} from "rolldown";
+import { dts } from "rolldown-plugin-dts";
+import { RolldownOptions } from "rolldown";
 import { devDependencies } from "./package.json"
 
 const external = new RegExp(`^(${Object.getOwnPropertyNames(devDependencies).join("|")}|node:)`)
@@ -8,14 +8,15 @@ export default [
     {
         external,
         input: {
-            main:"src/index.ts"
+            main: "src/index.ts",
+            rest: "src/rest/index.ts"
         },
-        plugins: [dts({isolatedDeclarations: true})],
+        plugins: [dts({ oxc: true })],
         output: {
             dir: "dist",
-            esModule: true,
+            keepNames: true,
+            cleanDir: true,
         },
         treeshake: true,
-        keepNames: true
     }
 ] satisfies RolldownOptions[];

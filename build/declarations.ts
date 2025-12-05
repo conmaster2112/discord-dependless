@@ -106,7 +106,7 @@ const TYPE_MAPPER = {
     float: "number"
 }
 function* writeEndPoints(paths: any): Generator<string> {
-    yield "export type DiscordRestAPIPath = ";
+    yield "export type DiscordRawRestAPIPath = ";
     const _ = new Set();
     for (let key of Reflect.ownKeys(paths)) {
         if (typeof key !== "string") continue;
@@ -128,7 +128,9 @@ function* writeEndPoints(paths: any): Generator<string> {
         yield `\`${key}\``;
     }
 
-    yield ";\n\n";
+    yield ";\n";
+    yield "export type DiscordRestAPIPath = DiscordRawRestAPIPath | " + "`${DiscordRawRestAPIPath}?${string}`;\n";
+    yield "\n"
 }
 function* writeSchemas(schemas: any): Generator<string> {
     for (const key of Reflect.ownKeys(schemas)) {

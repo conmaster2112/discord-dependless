@@ -29,20 +29,31 @@ export class RequestJson<T> extends RequestInitInfo {
         super(method as RequestMethod)
     }
     public async fetch(fetch: FetchLike = globalThis.fetch as unknown as FetchLike, headers?: Record<string, string | number>): Promise<Result<T>> {
+        const value = await this.fetchInternal(fetch, headers);
+        return this.resolveInternal(value)
+    }
+    async fetchInternal(fetch: FetchLike = globalThis.fetch as unknown as FetchLike, headers?: Record<string, string | number>): Promise<Result<ResponseLike>> {
         if (!this.headers) this.headers = {};
-        if(headers) Object.assign(this.headers, headers);
-        const value = await Result.wrap(fetch(REST_API_ENDPOINT + this.path, this));
-
+        if (headers) Object.assign(this.headers, headers);
+        return await Result.wrap(fetch(REST_API_ENDPOINT + this.path, this));
+    }
+    async resolveInternal(value: Result<ResponseLike>): Promise<Result<T>> {
         // Return immediately
         if (!value.isValid()) return value as Result<T>;
 
         // Return immediately
-        if (!value.data.ok) 
+        if (!value.data.ok)
             return new ErrorResult(await DiscordAPIError.from(value.data as ResponseLike, this.path, this.method)) as any;
-        
-        if(value.data.headers?.[HeaderType.ContentType] === ContentTypes.Json)
-             return Result.wrap<T>(value.data.json<T>());
-        
+
+        const headers = toLowerKeyMappedObject(value.data.headers ?? {});
+        if (headers[HeaderType.ContentType] === ContentTypes.Json)
+            return Result.wrap<T>(value.data.json<T>());
+
         return new ValidResult(null!)
     }
+}
+export function toLowerKeyMappedObject<T extends Record<string, unknown>>(obj: Record<string, unknown>): T {
+    const result: Record<string, unknown> = {};
+    for (const key of Object.getOwnPropertyNames(obj)) { result[key.toLowerCase()] = obj[key]; }
+    return result as T;
 }

@@ -1,5 +1,5 @@
 import { ResponseLike } from "./api-like";
-import { DiscordError } from "./rest-api-types";
+import { DiscordError } from "./rest";
 
 export class DiscordAPIError extends Error {
     public readonly path: string;
@@ -13,7 +13,7 @@ export class DiscordAPIError extends Error {
         this.path = path;
         this.method = method;
         this.response = response;
-        this.reportMessages = errors.map(e=>`[${e.detail.code}] [${e.path}] -> ${e.detail.message}`)
+        this.reportMessages = errors.map(e => `[${e.detail.code}] [${e.path}] -> ${e.detail.message}`)
         this.errorsDetails = errors;
     }
 
@@ -21,7 +21,8 @@ export class DiscordAPIError extends Error {
         if (String(response.status).match(/40\d/)) {
             const error = await response.json<DiscordError>().catch(_ => null);
             if (error === null) return new Error(response.statusText);
-            return new DiscordAPIError(Array.from<ReportDetail>(this.getReportsPaths((error as any).errors??{})), response, path, method);
+            if (error.message) return new DiscordAPIError([{ detail: error, path: "" }], response, path, method);
+            return new DiscordAPIError(Array.from<ReportDetail>(this.getReportsPaths((error as any).errors ?? {})), response, path, method);
         }
         return new Error(response.statusText);
     }
@@ -45,7 +46,7 @@ export class DiscordAPIError extends Error {
     }
 }
 type ErrorDetail = {
-    code: string;
+    code: number;
     message: string;
 }
 type ReportDetail = {
